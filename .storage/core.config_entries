@@ -1,0 +1,253 @@
+{
+    "version": 1,
+    "minor_version": 1,
+    "key": "core.config_entries",
+    "data": {
+        "entries": [
+            {
+                "entry_id": "4be9b885596b3b6f6404e0fc70677c7e",
+                "version": 1,
+                "domain": "hassio",
+                "title": "Supervisor",
+                "data": {},
+                "options": {},
+                "pref_disable_new_entities": false,
+                "pref_disable_polling": false,
+                "source": "system",
+                "unique_id": "hassio",
+                "disabled_by": null
+            },
+            {
+                "entry_id": "805e99560134efee98f1fe429d6bcbc3",
+                "version": 1,
+                "domain": "sun",
+                "title": "Sun",
+                "data": {},
+                "options": {},
+                "pref_disable_new_entities": false,
+                "pref_disable_polling": false,
+                "source": "import",
+                "unique_id": null,
+                "disabled_by": null
+            },
+            {
+                "entry_id": "f31cf88bcac13491890659c6986b26ec",
+                "version": 1,
+                "domain": "radio_browser",
+                "title": "Radio Browser",
+                "data": {},
+                "options": {},
+                "pref_disable_new_entities": false,
+                "pref_disable_polling": false,
+                "source": "onboarding",
+                "unique_id": null,
+                "disabled_by": null
+            },
+            {
+                "entry_id": "6dd2a6415f0a438969fdbc4b4f8438c2",
+                "version": 1,
+                "domain": "ecobee",
+                "title": "ecobee",
+                "data": {
+                    "api_key": "JdZt44p1HT7MwcB0i7AKDiU2ymFrDJBI",
+                    "refresh_token": "lbrCWVajTb20ZSfNN5r2-PlADtp7W9CvzbrFJrRVMb0Ho"
+                },
+                "options": {},
+                "pref_disable_new_entities": false,
+                "pref_disable_polling": false,
+                "source": "homekit",
+                "unique_id": null,
+                "disabled_by": null
+            },
+            {
+                "entry_id": "1122909a38157c28b1f8d6ce30ed784c",
+                "version": 1,
+                "domain": "nws",
+                "title": "KDNL",
+                "data": {
+                    "api_key": "breimer273@gmail.com",
+                    "latitude": 33.758547,
+                    "longitude": -82.071027,
+                    "station": "KDNL"
+                },
+                "options": {},
+                "pref_disable_new_entities": false,
+                "pref_disable_polling": false,
+                "source": "user",
+                "unique_id": "33.758547_-82.071027",
+                "disabled_by": null
+            },
+            {
+                "entry_id": "da9aac8be98c485e6307827278d77d92",
+                "version": 1,
+                "domain": "hacs",
+                "title": "",
+                "data": {
+                    "token": "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"
+                },
+                "options": {},
+                "pref_disable_new_entities": false,
+                "pref_disable_polling": false,
+                "source": "user",
+                "unique_id": null,
+                "disabled_by": null
+            },
+            {
+                "entry_id": "26dbc3ced17d59fd9af0c18036552dcf",
+                "version": 1,
+                "domain": "econet",
+                "title": "Brwweds@gmail.com",
+                "data": {
+                    "email": "Brwweds@gmail.com",
+                    "password": "Cyb3rW@rrior"
+                },
+                "options": {},
+                "pref_disable_new_entities": false,
+                "pref_disable_polling": false,
+                "source": "user",
+                "unique_id": "Brwweds@gmail.com",
+                "disabled_by": null
+            },
+            {
+                "entry_id": "ecbb3fbf9deb04852086de0d4ea4cb3c",
+                "version": 2,
+                "domain": "unifiprotect",
+                "title": "Dream Router",
+                "data": {
+                    "host": "192.168.1.1",
+                    "port": 443,
+                    "verify_ssl": false,
+                    "username": "breimer273",
+                    "password": "1&PYV@&jtc9rYIt^pEIU",
+                    "id": "Dream Router"
+                },
+                "options": {
+                    "disable_rtsp": false,
+                    "all_updates": false,
+                    "override_connection_host": false
+                },
+                "pref_disable_new_entities": false,
+                "pref_disable_polling": false,
+                "source": "user",
+                "unique_id": "D021F9CB87F6",
+                "disabled_by": null
+            },
+            {
+                "entry_id": "a53614135fa6a9b9ac03abde43fbaa23",
+                "version": 1,
+                "domain": "mobile_app",
+                "title": "Bill\u2019s iPhone",
+                "data": {
+                    "device_name": "Bill\u2019s iPhone",
+                    "app_name": "Home Assistant",
+                    "manufacturer": "Apple",
+                    "device_id": "516CFEB8-F71E-4565-90F3-4C503D89E9C7",
+                    "os_version": "15.5",
+                    "model": "iPhone14,5",
+                    "supports_encryption": true,
+                    "app_data": {
+                        "push_url": "https://mobile-apps.home-assistant.io/api/sendPushNotification",
+                        "push_token": "c7gj614mD0NimrME8gkjwI:APA91bGYhr84uvTQ_wfEuR0Jw9dB4z5DPTKbYYw19wP5_R1ECLX1Xxi9GbqB4istmJFJrGkWrBDyDoXjC9XWzMTipDKwqyuBOTBmm9nP7xo7DsRJ96rH0TjW2BxZO7zenYDjF38i7a7v"
+                    },
+                    "os_name": "iOS",
+                    "app_version": "2022.3 (2022.358)",
+                    "app_id": "io.robbie.HomeAssistant",
+                    "cloudhook_url": "https://hooks.nabu.casa/gAAAAABivJksYceEh3pEyvwY-esoC7aO3mLJ018pxLcZ9kp3wAQKDo5sqjBwTR3MlK6fkwHAdH1TZuyS8IT5C1HfqQZSpIk-PXsjMsrxmt6hI6KqaRQF3rZICQw1NcMD-J87dFMabAGdLTQAQWCheQLEjMY86Sxu9EqvaHZxHb3K5Q7Q_UVR2Qg=",
+                    "webhook_id": "c43479162a5a431950d53d539f24920550cf7f7965f0bfe6ce18e34719ccaad3",
+                    "secret": "175e4cce02790bf33af99ffb2b988f9e7587f3b4c225cc66915cdfded9edc7ab",
+                    "user_id": "632563255fcb458bb61a9ecfeeeb26d1"
+                },
+                "options": {},
+                "pref_disable_new_entities": false,
+                "pref_disable_polling": false,
+                "source": "registration",
+                "unique_id": "io.robbie.HomeAssistant-516CFEB8-F71E-4565-90F3-4C503D89E9C7",
+                "disabled_by": null
+            },
+            {
+                "entry_id": "4df8e2b660ade67addce0e01906d49a4",
+                "version": 1,
+                "domain": "mobile_app",
+                "title": "bills_fire_tablet",
+                "data": {
+                    "app_id": "io.homeassistant.companion.android",
+                    "app_name": "Home Assistant",
+                    "app_version": "2022.6.0-full (2398)",
+                    "device_name": "bills_fire_tablet",
+                    "manufacturer": "Amazon",
+                    "model": "KFTRPWI",
+                    "os_name": "Android",
+                    "os_version": "28",
+                    "supports_encryption": false,
+                    "app_data": {
+                        "push_websocket_channel": true,
+                        "push_url": "https://mobile-apps.home-assistant.io/api/sendPush/android/v1",
+                        "push_token": "e703bkRBT52iWOEEsoXCd7:APA91bE6PrjsRNPMBQjW1vJG2FM7FXL0IDWAu0qhG2K8eJnSgmfGPOlV2J-YXJNOBvuPrLdbUztIjC15O_1X1ZY4wfPMoLdS0s09pJvTo13FHkieoB3KiikuUxEDq-POhdoRN2rSo8QA"
+                    },
+                    "device_id": "78e6b8af4163558d",
+                    "cloudhook_url": "https://hooks.nabu.casa/gAAAAABivkn-94BJ1TONADm2xso7YPvkSLo_T8NlZXOTBGxUkOuUCaVk-ZBehXLUnqGlon6f85k7tqbyBrvGebZhWGoAqwJSKG2FQemNSvBbwCjE8RwU5m_e38s3ZSOEywCbJBgC95CHm4jcin71y9JWKjln2iE1Z6vqgtqy6WnwyTERCBUB0NQ=",
+                    "webhook_id": "a0d77504dede6935eb4d074be0e1ddebf13d0478a8e4683184263259514db111",
+                    "user_id": "632563255fcb458bb61a9ecfeeeb26d1"
+                },
+                "options": {},
+                "pref_disable_new_entities": false,
+                "pref_disable_polling": false,
+                "source": "registration",
+                "unique_id": "io.homeassistant.companion.android-78e6b8af4163558d",
+                "disabled_by": null
+            },
+            {
+                "entry_id": "de7a038de9d6416dc8bb8610a48599e6",
+                "version": 1,
+                "domain": "owntracks",
+                "title": "OwnTracks",
+                "data": {
+                    "webhook_id": "29e22f7f54155834640c6339df7c3f45b5af0b8ed345456e537f59d540af69cb",
+                    "secret": "11b8a720fa2262a275777c06b5889a81",
+                    "cloudhook": true
+                },
+                "options": {},
+                "pref_disable_new_entities": false,
+                "pref_disable_polling": false,
+                "source": "user",
+                "unique_id": null,
+                "disabled_by": null
+            },
+            {
+                "entry_id": "6e904a1da0476af3470a0b720e1dc3bb",
+                "version": 1,
+                "domain": "mqtt",
+                "title": "Mosquitto broker",
+                "data": {
+                    "broker": "core-mosquitto",
+                    "port": 1883,
+                    "username": "homeassistant",
+                    "password": "looQuoqu6too0seiz2koozim6iegoongaiGhu7Lei1citei6Ro8eiHiqu0cazieN",
+                    "protocol": "3.1.1",
+                    "discovery": true
+                },
+                "options": {},
+                "pref_disable_new_entities": false,
+                "pref_disable_polling": false,
+                "source": "hassio",
+                "unique_id": null,
+                "disabled_by": null
+            },
+            {
+                "entry_id": "45a52c553c94f4f3047cb68b7a6452d1",
+                "version": 2,
+                "domain": "frigate",
+                "title": "192.168.1.252:5001",
+                "data": {
+                    "url": "http://192.168.1.252:5001"
+                },
+                "options": {},
+                "pref_disable_new_entities": false,
+                "pref_disable_polling": false,
+                "source": "user",
+                "unique_id": null,
+                "disabled_by": null
+            }
+        ]
+    }
+}

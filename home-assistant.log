@@ -1,0 +1,357 @@
+2022-07-10 05:55:45 WARNING (SyncWorker_0) [homeassistant.loader] We found a custom integration hacs which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
+2022-07-10 05:55:45 WARNING (SyncWorker_2) [homeassistant.loader] We found a custom integration weatheralerts which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
+2022-07-10 05:55:45 WARNING (SyncWorker_1) [homeassistant.loader] We found a custom integration pirateweather which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
+2022-07-10 05:55:45 WARNING (SyncWorker_0) [homeassistant.loader] We found a custom integration frigate which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
+2022-07-10 05:55:49 WARNING (Recorder) [homeassistant.components.recorder.util] The system could not validate that the sqlite3 database at //config/home-assistant_v2.db was shutdown cleanly
+2022-07-10 05:55:49 WARNING (Recorder) [homeassistant.components.recorder.util] Ended unfinished session (id=32 from 2022-07-04 20:17:50.509225)
+2022-07-10 05:55:51 WARNING (MainThread) [hass_nabucasa.cloud_api] Fetched https://alexa-api.nabucasa.com/access_token (400)
+2022-07-10 05:55:55 ERROR (MainThread) [custom_components.frigate.api] Error fetching information from http://192.168.1.252:5001/api/stats: Cannot connect to host 192.168.1.252:5001 ssl:default [Connect call failed ('192.168.1.252', 5001)]
+2022-07-10 05:55:55 WARNING (MainThread) [homeassistant.config_entries] Config entry '192.168.1.252:5001' for frigate integration not ready yet; Retrying in background
+2022-07-10 05:55:56 WARNING (MainThread) [hass_nabucasa.cloud_api] Fetched https://alexa-api.nabucasa.com/access_token (400)
+2022-07-10 05:55:56 WARNING (MainThread) [homeassistant.config_entries] Config entry 'Dream Router' for unifiprotect integration not ready yet: Request failed: /proxy/protect/api/nvr - Status: 404 - Reason: Not Found; Retrying in background
+2022-07-10 05:55:56 WARNING (MainThread) [hass_nabucasa.cloud_api] Fetched https://alexa-api.nabucasa.com/access_token (400)
+2022-07-10 05:55:56 WARNING (MainThread) [hass_nabucasa.cloud_api] Fetched https://alexa-api.nabucasa.com/access_token (400)
+2022-07-10 05:55:59 ERROR (MainThread) [homeassistant] Error doing job: Task exception was never retrieved
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/components/cloud/alexa_config.py", line 367, in _handle_entity_registry_updated
+    await self._sync_helper(to_update, to_remove)
+  File "/usr/src/homeassistant/homeassistant/components/cloud/alexa_config.py", line 311, in _sync_helper
+    await self.async_get_access_token()
+  File "/usr/src/homeassistant/homeassistant/components/cloud/alexa_config.py", line 173, in async_get_access_token
+    raise alexa_errors.RequireRelink
+homeassistant.components.alexa.errors.RequireRelink
+2022-07-10 05:55:59 ERROR (MainThread) [homeassistant] Error doing job: Task exception was never retrieved
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/components/cloud/alexa_config.py", line 367, in _handle_entity_registry_updated
+    await self._sync_helper(to_update, to_remove)
+  File "/usr/src/homeassistant/homeassistant/components/cloud/alexa_config.py", line 311, in _sync_helper
+    await self.async_get_access_token()
+  File "/usr/src/homeassistant/homeassistant/components/cloud/alexa_config.py", line 173, in async_get_access_token
+    raise alexa_errors.RequireRelink
+homeassistant.components.alexa.errors.RequireRelink
+2022-07-10 05:55:59 ERROR (MainThread) [homeassistant] Error doing job: Task exception was never retrieved
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/components/cloud/alexa_config.py", line 367, in _handle_entity_registry_updated
+    await self._sync_helper(to_update, to_remove)
+  File "/usr/src/homeassistant/homeassistant/components/cloud/alexa_config.py", line 311, in _sync_helper
+    await self.async_get_access_token()
+  File "/usr/src/homeassistant/homeassistant/components/cloud/alexa_config.py", line 173, in async_get_access_token
+    raise alexa_errors.RequireRelink
+homeassistant.components.alexa.errors.RequireRelink
+2022-07-10 05:55:59 ERROR (MainThread) [homeassistant.helpers.event] Error while processing template: Template("{%- macro getReport() -%}
+  The Weather in Edgefield is currently 
+   {{states('sensor.pirateweather_temperaure')|round}} degrees 
+  {% if is_state('weather.home', 'rainy') %}
+    {{ [
+    'with rain.', 
+    'with showers.'
+    ] | random }}
+  {% elif is_state('weather.home', 'cloudy') %}
+    {{ [
+    'with clouds.', 
+    'with cloudy skies.'
+    ] | random }}
+  {% elif is_state('weather.home', 'partlycloudy') %}
+    {{ [
+    'with some clouds.', 
+    'with partly cloudy skies.',
+    'with scatterd clouds'
+    ] | random }}
+  {% elif is_state('weather.home', 'sunny') %}
+    {% if is_state('sun.sun', 'above_horizon') %}
+      {{ [
+      'and sunny.', 
+      'with sun.'
+      ] | random }}
+    {% else %}
+      {{ [
+      'and clear.', 
+      'with clear skies.'
+      ] | random }}
+    {% endif %}
+  {% else %}
+    and {{ states.weather.home.state }}
+  {% endif %}
+{%- endmacro -%} {# a macro that removes all newline characters, empty spaces, and returns formatted text  #}
+  {%- macro cleanup(data) -%}
+    {%- for item in data.split("\n")  if item | trim != "" -%}
+      {{ item | trim }} {% endfor -%}
+{%- endmacro -%}
+{# a macro to call all macros :)  #}
+  {%- macro mother_of_all_macros() -%}
+    {{ getReport() }}
+  {%- endmacro -%}
+  
+  {# Call the macro  #}
+  {{- cleanup(mother_of_all_macros()) -}}")
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 1350, in forgiving_round
+    value = round(float(value), precision)
+ValueError: could not convert string to float: 'unknown'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 409, in async_render
+    render_result = _render_with_context(self.template, compiled, **kwargs)
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 1842, in _render_with_context
+    return template.render(**kwargs)
+  File "/usr/local/lib/python3.9/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/usr/local/lib/python3.9/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "<template>", line 46, in top-level template code
+  File "/usr/local/lib/python3.9/site-packages/jinja2/sandbox.py", line 393, in call
+    return __context.call(__obj, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/jinja2/runtime.py", line 777, in _invoke
+    rv = self._func(*arguments)
+  File "<template>", line 42, in template
+  File "/usr/local/lib/python3.9/site-packages/jinja2/sandbox.py", line 393, in call
+    return __context.call(__obj, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/jinja2/runtime.py", line 777, in _invoke
+    rv = self._func(*arguments)
+  File "<template>", line 3, in template
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 1355, in forgiving_round
+    raise_no_default("round", value)
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 1331, in raise_no_default
+    raise ValueError(
+ValueError: Template error: round got invalid input 'unknown' when rendering template '{%- macro getReport() -%}
+  The Weather in Edgefield is currently 
+   {{states('sensor.pirateweather_temperaure')|round}} degrees 
+  {% if is_state('weather.home', 'rainy') %}
+    {{ [
+    'with rain.', 
+    'with showers.'
+    ] | random }}
+  {% elif is_state('weather.home', 'cloudy') %}
+    {{ [
+    'with clouds.', 
+    'with cloudy skies.'
+    ] | random }}
+  {% elif is_state('weather.home', 'partlycloudy') %}
+    {{ [
+    'with some clouds.', 
+    'with partly cloudy skies.',
+    'with scatterd clouds'
+    ] | random }}
+  {% elif is_state('weather.home', 'sunny') %}
+    {% if is_state('sun.sun', 'above_horizon') %}
+      {{ [
+      'and sunny.', 
+      'with sun.'
+      ] | random }}
+    {% else %}
+      {{ [
+      'and clear.', 
+      'with clear skies.'
+      ] | random }}
+    {% endif %}
+  {% else %}
+    and {{ states.weather.home.state }}
+  {% endif %}
+{%- endmacro -%} {# a macro that removes all newline characters, empty spaces, and returns formatted text  #}
+  {%- macro cleanup(data) -%}
+    {%- for item in data.split("\n")  if item | trim != "" -%}
+      {{ item | trim }} {% endfor -%}
+{%- endmacro -%}
+{# a macro to call all macros :)  #}
+  {%- macro mother_of_all_macros() -%}
+    {{ getReport() }}
+  {%- endmacro -%}
+  
+  {# Call the macro  #}
+  {{- cleanup(mother_of_all_macros()) -}}' but no default was specified
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 525, in async_render_to_info
+    render_info._result = self.async_render(variables, strict=strict, **kwargs)
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 411, in async_render
+    raise TemplateError(err) from err
+homeassistant.exceptions.TemplateError: ValueError: Template error: round got invalid input 'unknown' when rendering template '{%- macro getReport() -%}
+  The Weather in Edgefield is currently 
+   {{states('sensor.pirateweather_temperaure')|round}} degrees 
+  {% if is_state('weather.home', 'rainy') %}
+    {{ [
+    'with rain.', 
+    'with showers.'
+    ] | random }}
+  {% elif is_state('weather.home', 'cloudy') %}
+    {{ [
+    'with clouds.', 
+    'with cloudy skies.'
+    ] | random }}
+  {% elif is_state('weather.home', 'partlycloudy') %}
+    {{ [
+    'with some clouds.', 
+    'with partly cloudy skies.',
+    'with scatterd clouds'
+    ] | random }}
+  {% elif is_state('weather.home', 'sunny') %}
+    {% if is_state('sun.sun', 'above_horizon') %}
+      {{ [
+      'and sunny.', 
+      'with sun.'
+      ] | random }}
+    {% else %}
+      {{ [
+      'and clear.', 
+      'with clear skies.'
+      ] | random }}
+    {% endif %}
+  {% else %}
+    and {{ states.weather.home.state }}
+  {% endif %}
+{%- endmacro -%} {# a macro that removes all newline characters, empty spaces, and returns formatted text  #}
+  {%- macro cleanup(data) -%}
+    {%- for item in data.split("\n")  if item | trim != "" -%}
+      {{ item | trim }} {% endfor -%}
+{%- endmacro -%}
+{# a macro to call all macros :)  #}
+  {%- macro mother_of_all_macros() -%}
+    {{ getReport() }}
+  {%- endmacro -%}
+  
+  {# Call the macro  #}
+  {{- cleanup(mother_of_all_macros()) -}}' but no default was specified
+2022-07-10 05:55:59 ERROR (MainThread) [homeassistant.components.template.template_entity] TemplateError('ValueError: Template error: round got invalid input 'unknown' when rendering template '{%- macro getReport() -%}
+  The Weather in Edgefield is currently 
+   {{states('sensor.pirateweather_temperaure')|round}} degrees 
+  {% if is_state('weather.home', 'rainy') %}
+    {{ [
+    'with rain.', 
+    'with showers.'
+    ] | random }}
+  {% elif is_state('weather.home', 'cloudy') %}
+    {{ [
+    'with clouds.', 
+    'with cloudy skies.'
+    ] | random }}
+  {% elif is_state('weather.home', 'partlycloudy') %}
+    {{ [
+    'with some clouds.', 
+    'with partly cloudy skies.',
+    'with scatterd clouds'
+    ] | random }}
+  {% elif is_state('weather.home', 'sunny') %}
+    {% if is_state('sun.sun', 'above_horizon') %}
+      {{ [
+      'and sunny.', 
+      'with sun.'
+      ] | random }}
+    {% else %}
+      {{ [
+      'and clear.', 
+      'with clear skies.'
+      ] | random }}
+    {% endif %}
+  {% else %}
+    and {{ states.weather.home.state }}
+  {% endif %}
+{%- endmacro -%} {# a macro that removes all newline characters, empty spaces, and returns formatted text  #}
+  {%- macro cleanup(data) -%}
+    {%- for item in data.split("\n")  if item | trim != "" -%}
+      {{ item | trim }} {% endfor -%}
+{%- endmacro -%}
+{# a macro to call all macros :)  #}
+  {%- macro mother_of_all_macros() -%}
+    {{ getReport() }}
+  {%- endmacro -%}
+  
+  {# Call the macro  #}
+  {{- cleanup(mother_of_all_macros()) -}}' but no default was specified') while processing template 'Template("{%- macro getReport() -%}
+  The Weather in Edgefield is currently 
+   {{states('sensor.pirateweather_temperaure')|round}} degrees 
+  {% if is_state('weather.home', 'rainy') %}
+    {{ [
+    'with rain.', 
+    'with showers.'
+    ] | random }}
+  {% elif is_state('weather.home', 'cloudy') %}
+    {{ [
+    'with clouds.', 
+    'with cloudy skies.'
+    ] | random }}
+  {% elif is_state('weather.home', 'partlycloudy') %}
+    {{ [
+    'with some clouds.', 
+    'with partly cloudy skies.',
+    'with scatterd clouds'
+    ] | random }}
+  {% elif is_state('weather.home', 'sunny') %}
+    {% if is_state('sun.sun', 'above_horizon') %}
+      {{ [
+      'and sunny.', 
+      'with sun.'
+      ] | random }}
+    {% else %}
+      {{ [
+      'and clear.', 
+      'with clear skies.'
+      ] | random }}
+    {% endif %}
+  {% else %}
+    and {{ states.weather.home.state }}
+  {% endif %}
+{%- endmacro -%} {# a macro that removes all newline characters, empty spaces, and returns formatted text  #}
+  {%- macro cleanup(data) -%}
+    {%- for item in data.split("\n")  if item | trim != "" -%}
+      {{ item | trim }} {% endfor -%}
+{%- endmacro -%}
+{# a macro to call all macros :)  #}
+  {%- macro mother_of_all_macros() -%}
+    {{ getReport() }}
+  {%- endmacro -%}
+  
+  {# Call the macro  #}
+  {{- cleanup(mother_of_all_macros()) -}}")' for attribute '_attr_native_value' in entity 'sensor.current_conditions'
+2022-07-10 05:55:59 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-10 05:55:59 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-10 05:55:59 ERROR (MainThread) [homeassistant.helpers.event] Error while processing template: Template("{{ states('sensor.daily_rainfall_in') | float  + state_attr('sensor.daily_rainfall_in', 'last_period') | float  }}")
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 1615, in forgiving_float_filter
+    return float(value)
+ValueError: could not convert string to float: 'unknown'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 409, in async_render
+    render_result = _render_with_context(self.template, compiled, **kwargs)
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 1842, in _render_with_context
+    return template.render(**kwargs)
+  File "/usr/local/lib/python3.9/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/usr/local/lib/python3.9/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "<template>", line 1, in top-level template code
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 1618, in forgiving_float_filter
+    raise_no_default("float", value)
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 1331, in raise_no_default
+    raise ValueError(
+ValueError: Template error: float got invalid input 'unknown' when rendering template '{{ states('sensor.daily_rainfall_in') | float  + state_attr('sensor.daily_rainfall_in', 'last_period') | float  }}' but no default was specified
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 525, in async_render_to_info
+    render_info._result = self.async_render(variables, strict=strict, **kwargs)
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 411, in async_render
+    raise TemplateError(err) from err
+homeassistant.exceptions.TemplateError: ValueError: Template error: float got invalid input 'unknown' when rendering template '{{ states('sensor.daily_rainfall_in') | float  + state_attr('sensor.daily_rainfall_in', 'last_period') | float  }}' but no default was specified
+2022-07-10 05:55:59 ERROR (MainThread) [homeassistant.components.template.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unknown' when rendering template '{{ states('sensor.daily_rainfall_in') | float  + state_attr('sensor.daily_rainfall_in', 'last_period') | float  }}' but no default was specified') while processing template 'Template("{{ states('sensor.daily_rainfall_in') | float  + state_attr('sensor.daily_rainfall_in', 'last_period') | float  }}")' for attribute '_attr_native_value' in entity 'sensor.previous_rainfall'
+2022-07-10 05:55:59 WARNING (MainThread) [homeassistant.components.homeassistant.triggers.numeric_state] Error initializing 'Forecast Low Near Freezing' trigger: In 'numeric_state' condition: entity sensor.tonights_low_temp state '' cannot be processed as a number
+2022-07-10 05:55:59 WARNING (MainThread) [homeassistant.components.homeassistant.triggers.numeric_state] Error initializing 'Forecast Low Above Freezing' trigger: In 'numeric_state' condition: entity sensor.tonights_low_temp state '' cannot be processed as a number
+2022-07-10 05:55:59 ERROR (MainThread) [custom_components.frigate.api] Error fetching information from http://192.168.1.252:5001/api/stats: Cannot connect to host 192.168.1.252:5001 ssl:default [Connect call failed ('192.168.1.252', 5001)]
+2022-07-10 05:56:51 ERROR (MainThread) [homeassistant] Error doing job: Task exception was never retrieved
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/components/google_assistant/report_state.py", line 121, in initial_report
+    entity_data = entity.query_serialize()
+  File "/usr/src/homeassistant/homeassistant/components/google_assistant/helpers.py", line 648, in query_serialize
+    deep_update(attrs, trt.query_attributes())
+  File "/usr/src/homeassistant/homeassistant/components/google_assistant/trait.py", line 838, in query_attributes
+    temp = round(temp_util.convert(float(current_temp), unit, TEMP_CELSIUS), 1)
+ValueError: could not convert string to float: ''
+2022-07-10 06:00:00 ERROR (MainThread) [homeassistant.components.automation.water_heater_turn_up] Water Heater Turn Up: Error executing script. Invalid data for call_service at pos 1: extra keys not allowed @ data['device_id']
+2022-07-10 06:00:00 ERROR (MainThread) [homeassistant.components.automation.water_heater_turn_up] Error while executing automation automation.water_heater_turn_up: extra keys not allowed @ data['device_id']

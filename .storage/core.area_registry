@@ -1,0 +1,54 @@
+{
+    "version": 1,
+    "minor_version": 1,
+    "key": "core.area_registry",
+    "data": {
+        "areas": [
+            {
+                "name": "Living Room",
+                "id": "living_room",
+                "picture": null
+            },
+            {
+                "name": "Kitchen",
+                "id": "kitchen",
+                "picture": null
+            },
+            {
+                "name": "Bedroom",
+                "id": "bedroom",
+                "picture": null
+            },
+            {
+                "name": "Boys Room",
+                "id": "boys_room",
+                "picture": null
+            },
+            {
+                "name": "Hallway 2",
+                "id": "hallway_2",
+                "picture": null
+            },
+            {
+                "name": "Home",
+                "id": "home",
+                "picture": null
+            },
+            {
+                "name": "Garage",
+                "id": "garage",
+                "picture": null
+            },
+            {
+                "name": "Office",
+                "id": "office",
+                "picture": null
+            },
+            {
+                "name": "Driveway",
+                "id": "driveway",
+                "picture": null
+            }
+        ]
+    }
+}

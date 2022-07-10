@@ -1,0 +1,30 @@
+homeassistant:
+    packages: !include_dir_named packages
+    
+# Loads default set of integrations. Do not remove.
+default_config:
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+notify:
+  - name: "email_bill"
+    platform: smtp
+    server: "smtp.gmail.com"
+    port: 587
+    timeout: 15
+    sender: "breimer273@gmail.com"
+    encryption: starttls
+    username: "breimer273@gmail.com"
+    password: !secret gmail_smtp_app_spec
+    recipient:
+      - "breimer273@gmail.com"
+      - "william.j.reimer4.mil@us.navy.mil"
+    sender_name: "Edgefield Home"
+
+    
+    
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml

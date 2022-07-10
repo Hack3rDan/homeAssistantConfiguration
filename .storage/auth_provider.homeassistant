@@ -1,0 +1,17 @@
+{
+    "version": 1,
+    "minor_version": 1,
+    "key": "auth_provider.homeassistant",
+    "data": {
+        "users": [
+            {
+                "username": "breimer273",
+                "password": "JDJiJDEyJGVqY2s4MFovT1B2VVFWUTlVRTRlVHUuUjFUMERUNEV4aW1PMEhhUmRpSVEzR1ZzOC5Xdk8y"
+            },
+            {
+                "username": "mqtt",
+                "password": "JDJiJDEyJGNDcmpvbHhHOTNZLkZCSEtXOG1sSk9wSldtLnlRbHlTZzRoZkNJSUxjNWVncmx1eDJ3aW5T"
+            }
+        ]
+    }
+}

@@ -1,0 +1,45 @@
+- id: '1656519615147'
+  alias: daily_brief_ui
+  description: ''
+  trigger:
+  - platform: time
+    at: 06:00:00
+  condition: []
+  action:
+  - service: notify.email_bill
+    data:
+      title: This is your daily brief ui
+      message: !include ./templates/daily_brief_script.yaml
+  - service: notify.notify
+    data:
+      message: !include ./templates/daily_brief_script.yaml
+      title: This is your daily brief ui notify.notify
+  mode: single
+- id: '1656669375923'
+  alias: Water Heater Turn Down
+  description: ''
+  trigger:
+  - platform: time
+    at: '22:00:00'
+  condition: []
+  action:
+  - service: water_heater.set_temperature
+    data:
+      temperature: 100
+    target:
+      device_id: ef9fef2a9d3e533bb399fe77eb2476f7
+  mode: single
+- id: '1656669441754'
+  alias: Water Heater Turn Up
+  description: ''
+  trigger:
+  - platform: time
+    at: 06:00:00
+  condition: []
+  action:
+  - service: water_heater.set_temperature
+    data:
+      temperature: 130
+    target:
+      device_id: ef9fef2a9d3e533bb399fe77eb2476f7
+  mode: single

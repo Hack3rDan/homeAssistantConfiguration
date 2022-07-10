@@ -1,0 +1,20 @@
+automation:
+  - alias: daily_brief_yml
+    trigger:
+      - platform: time
+        at: "08:00:00"
+    action:
+    - service: notify.email_bill
+      data:
+        message: "This is your daily brief ui"
+        title: "This is your daily brief ui"
+    - service: notify.notify
+      data:
+        message: "This is your daily brief ui notify.notify"
+        title: "This is your daily brief ui notify.notify"
+    mode: single
+# news
+# stocks
+# weather
+# security events
+# daily agenda

@@ -1,0 +1,472 @@
+2022-07-04 16:17:50 WARNING (SyncWorker_1) [homeassistant.loader] We found a custom integration hacs which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
+2022-07-04 16:17:50 WARNING (SyncWorker_2) [homeassistant.loader] We found a custom integration weatheralerts which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
+2022-07-04 16:17:50 WARNING (SyncWorker_0) [homeassistant.loader] We found a custom integration pirateweather which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
+2022-07-04 16:17:50 WARNING (SyncWorker_1) [homeassistant.loader] We found a custom integration frigate which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
+2022-07-04 16:17:50 WARNING (Recorder) [homeassistant.components.recorder.util] The system could not validate that the sqlite3 database at //config/home-assistant_v2.db was shutdown cleanly
+2022-07-04 16:17:50 WARNING (Recorder) [homeassistant.components.recorder.util] Ended unfinished session (id=31 from 2022-07-04 03:20:14.542456)
+2022-07-04 16:17:52 WARNING (MainThread) [hass_nabucasa.cloud_api] Fetched https://alexa-api.nabucasa.com/access_token (400)
+2022-07-04 16:17:56 ERROR (MainThread) [custom_components.frigate.api] Error fetching information from http://192.168.1.252:5001/api/stats: Cannot connect to host 192.168.1.252:5001 ssl:default [Connect call failed ('192.168.1.252', 5001)]
+2022-07-04 16:17:56 WARNING (MainThread) [homeassistant.config_entries] Config entry '192.168.1.252:5001' for frigate integration not ready yet; Retrying in background
+2022-07-04 16:17:58 ERROR (MainThread) [homeassistant.components.nws] Error requesting NWS forecast hourly station KDNL data: 500, message='Internal Server Error', url=URL('https://api.weather.gov/gridpoints/CAE/25,46/forecast/hourly')
+2022-07-04 16:18:01 ERROR (MainThread) [homeassistant.helpers.event] Error while processing template: Template("{%- macro getReport() -%}
+  The Weather in Edgefield is currently 
+   {{states('sensor.pirateweather_temperaure')|round}} degrees 
+  {% if is_state('weather.home', 'rainy') %}
+    {{ [
+    'with rain.', 
+    'with showers.'
+    ] | random }}
+  {% elif is_state('weather.home', 'cloudy') %}
+    {{ [
+    'with clouds.', 
+    'with cloudy skies.'
+    ] | random }}
+  {% elif is_state('weather.home', 'partlycloudy') %}
+    {{ [
+    'with some clouds.', 
+    'with partly cloudy skies.',
+    'with scatterd clouds'
+    ] | random }}
+  {% elif is_state('weather.home', 'sunny') %}
+    {% if is_state('sun.sun', 'above_horizon') %}
+      {{ [
+      'and sunny.', 
+      'with sun.'
+      ] | random }}
+    {% else %}
+      {{ [
+      'and clear.', 
+      'with clear skies.'
+      ] | random }}
+    {% endif %}
+  {% else %}
+    and {{ states.weather.home.state }}
+  {% endif %}
+{%- endmacro -%} {# a macro that removes all newline characters, empty spaces, and returns formatted text  #}
+  {%- macro cleanup(data) -%}
+    {%- for item in data.split("\n")  if item | trim != "" -%}
+      {{ item | trim }} {% endfor -%}
+{%- endmacro -%}
+{# a macro to call all macros :)  #}
+  {%- macro mother_of_all_macros() -%}
+    {{ getReport() }}
+  {%- endmacro -%}
+  
+  {# Call the macro  #}
+  {{- cleanup(mother_of_all_macros()) -}}")
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 1350, in forgiving_round
+    value = round(float(value), precision)
+ValueError: could not convert string to float: 'unknown'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 409, in async_render
+    render_result = _render_with_context(self.template, compiled, **kwargs)
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 1842, in _render_with_context
+    return template.render(**kwargs)
+  File "/usr/local/lib/python3.9/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/usr/local/lib/python3.9/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "<template>", line 46, in top-level template code
+  File "/usr/local/lib/python3.9/site-packages/jinja2/sandbox.py", line 393, in call
+    return __context.call(__obj, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/jinja2/runtime.py", line 777, in _invoke
+    rv = self._func(*arguments)
+  File "<template>", line 42, in template
+  File "/usr/local/lib/python3.9/site-packages/jinja2/sandbox.py", line 393, in call
+    return __context.call(__obj, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/jinja2/runtime.py", line 777, in _invoke
+    rv = self._func(*arguments)
+  File "<template>", line 3, in template
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 1355, in forgiving_round
+    raise_no_default("round", value)
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 1331, in raise_no_default
+    raise ValueError(
+ValueError: Template error: round got invalid input 'unknown' when rendering template '{%- macro getReport() -%}
+  The Weather in Edgefield is currently 
+   {{states('sensor.pirateweather_temperaure')|round}} degrees 
+  {% if is_state('weather.home', 'rainy') %}
+    {{ [
+    'with rain.', 
+    'with showers.'
+    ] | random }}
+  {% elif is_state('weather.home', 'cloudy') %}
+    {{ [
+    'with clouds.', 
+    'with cloudy skies.'
+    ] | random }}
+  {% elif is_state('weather.home', 'partlycloudy') %}
+    {{ [
+    'with some clouds.', 
+    'with partly cloudy skies.',
+    'with scatterd clouds'
+    ] | random }}
+  {% elif is_state('weather.home', 'sunny') %}
+    {% if is_state('sun.sun', 'above_horizon') %}
+      {{ [
+      'and sunny.', 
+      'with sun.'
+      ] | random }}
+    {% else %}
+      {{ [
+      'and clear.', 
+      'with clear skies.'
+      ] | random }}
+    {% endif %}
+  {% else %}
+    and {{ states.weather.home.state }}
+  {% endif %}
+{%- endmacro -%} {# a macro that removes all newline characters, empty spaces, and returns formatted text  #}
+  {%- macro cleanup(data) -%}
+    {%- for item in data.split("\n")  if item | trim != "" -%}
+      {{ item | trim }} {% endfor -%}
+{%- endmacro -%}
+{# a macro to call all macros :)  #}
+  {%- macro mother_of_all_macros() -%}
+    {{ getReport() }}
+  {%- endmacro -%}
+  
+  {# Call the macro  #}
+  {{- cleanup(mother_of_all_macros()) -}}' but no default was specified
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 525, in async_render_to_info
+    render_info._result = self.async_render(variables, strict=strict, **kwargs)
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 411, in async_render
+    raise TemplateError(err) from err
+homeassistant.exceptions.TemplateError: ValueError: Template error: round got invalid input 'unknown' when rendering template '{%- macro getReport() -%}
+  The Weather in Edgefield is currently 
+   {{states('sensor.pirateweather_temperaure')|round}} degrees 
+  {% if is_state('weather.home', 'rainy') %}
+    {{ [
+    'with rain.', 
+    'with showers.'
+    ] | random }}
+  {% elif is_state('weather.home', 'cloudy') %}
+    {{ [
+    'with clouds.', 
+    'with cloudy skies.'
+    ] | random }}
+  {% elif is_state('weather.home', 'partlycloudy') %}
+    {{ [
+    'with some clouds.', 
+    'with partly cloudy skies.',
+    'with scatterd clouds'
+    ] | random }}
+  {% elif is_state('weather.home', 'sunny') %}
+    {% if is_state('sun.sun', 'above_horizon') %}
+      {{ [
+      'and sunny.', 
+      'with sun.'
+      ] | random }}
+    {% else %}
+      {{ [
+      'and clear.', 
+      'with clear skies.'
+      ] | random }}
+    {% endif %}
+  {% else %}
+    and {{ states.weather.home.state }}
+  {% endif %}
+{%- endmacro -%} {# a macro that removes all newline characters, empty spaces, and returns formatted text  #}
+  {%- macro cleanup(data) -%}
+    {%- for item in data.split("\n")  if item | trim != "" -%}
+      {{ item | trim }} {% endfor -%}
+{%- endmacro -%}
+{# a macro to call all macros :)  #}
+  {%- macro mother_of_all_macros() -%}
+    {{ getReport() }}
+  {%- endmacro -%}
+  
+  {# Call the macro  #}
+  {{- cleanup(mother_of_all_macros()) -}}' but no default was specified
+2022-07-04 16:18:01 ERROR (MainThread) [homeassistant.components.template.template_entity] TemplateError('ValueError: Template error: round got invalid input 'unknown' when rendering template '{%- macro getReport() -%}
+  The Weather in Edgefield is currently 
+   {{states('sensor.pirateweather_temperaure')|round}} degrees 
+  {% if is_state('weather.home', 'rainy') %}
+    {{ [
+    'with rain.', 
+    'with showers.'
+    ] | random }}
+  {% elif is_state('weather.home', 'cloudy') %}
+    {{ [
+    'with clouds.', 
+    'with cloudy skies.'
+    ] | random }}
+  {% elif is_state('weather.home', 'partlycloudy') %}
+    {{ [
+    'with some clouds.', 
+    'with partly cloudy skies.',
+    'with scatterd clouds'
+    ] | random }}
+  {% elif is_state('weather.home', 'sunny') %}
+    {% if is_state('sun.sun', 'above_horizon') %}
+      {{ [
+      'and sunny.', 
+      'with sun.'
+      ] | random }}
+    {% else %}
+      {{ [
+      'and clear.', 
+      'with clear skies.'
+      ] | random }}
+    {% endif %}
+  {% else %}
+    and {{ states.weather.home.state }}
+  {% endif %}
+{%- endmacro -%} {# a macro that removes all newline characters, empty spaces, and returns formatted text  #}
+  {%- macro cleanup(data) -%}
+    {%- for item in data.split("\n")  if item | trim != "" -%}
+      {{ item | trim }} {% endfor -%}
+{%- endmacro -%}
+{# a macro to call all macros :)  #}
+  {%- macro mother_of_all_macros() -%}
+    {{ getReport() }}
+  {%- endmacro -%}
+  
+  {# Call the macro  #}
+  {{- cleanup(mother_of_all_macros()) -}}' but no default was specified') while processing template 'Template("{%- macro getReport() -%}
+  The Weather in Edgefield is currently 
+   {{states('sensor.pirateweather_temperaure')|round}} degrees 
+  {% if is_state('weather.home', 'rainy') %}
+    {{ [
+    'with rain.', 
+    'with showers.'
+    ] | random }}
+  {% elif is_state('weather.home', 'cloudy') %}
+    {{ [
+    'with clouds.', 
+    'with cloudy skies.'
+    ] | random }}
+  {% elif is_state('weather.home', 'partlycloudy') %}
+    {{ [
+    'with some clouds.', 
+    'with partly cloudy skies.',
+    'with scatterd clouds'
+    ] | random }}
+  {% elif is_state('weather.home', 'sunny') %}
+    {% if is_state('sun.sun', 'above_horizon') %}
+      {{ [
+      'and sunny.', 
+      'with sun.'
+      ] | random }}
+    {% else %}
+      {{ [
+      'and clear.', 
+      'with clear skies.'
+      ] | random }}
+    {% endif %}
+  {% else %}
+    and {{ states.weather.home.state }}
+  {% endif %}
+{%- endmacro -%} {# a macro that removes all newline characters, empty spaces, and returns formatted text  #}
+  {%- macro cleanup(data) -%}
+    {%- for item in data.split("\n")  if item | trim != "" -%}
+      {{ item | trim }} {% endfor -%}
+{%- endmacro -%}
+{# a macro to call all macros :)  #}
+  {%- macro mother_of_all_macros() -%}
+    {{ getReport() }}
+  {%- endmacro -%}
+  
+  {# Call the macro  #}
+  {{- cleanup(mother_of_all_macros()) -}}")' for attribute '_attr_native_value' in entity 'sensor.current_conditions'
+2022-07-04 16:18:01 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-04 16:18:01 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-04 16:18:01 ERROR (MainThread) [homeassistant.helpers.event] Error while processing template: Template("{{ states('sensor.daily_rainfall_in') | float  + state_attr('sensor.daily_rainfall_in', 'last_period') | float  }}")
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 1615, in forgiving_float_filter
+    return float(value)
+ValueError: could not convert string to float: 'unknown'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 409, in async_render
+    render_result = _render_with_context(self.template, compiled, **kwargs)
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 1842, in _render_with_context
+    return template.render(**kwargs)
+  File "/usr/local/lib/python3.9/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/usr/local/lib/python3.9/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "<template>", line 1, in top-level template code
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 1618, in forgiving_float_filter
+    raise_no_default("float", value)
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 1331, in raise_no_default
+    raise ValueError(
+ValueError: Template error: float got invalid input 'unknown' when rendering template '{{ states('sensor.daily_rainfall_in') | float  + state_attr('sensor.daily_rainfall_in', 'last_period') | float  }}' but no default was specified
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 525, in async_render_to_info
+    render_info._result = self.async_render(variables, strict=strict, **kwargs)
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 411, in async_render
+    raise TemplateError(err) from err
+homeassistant.exceptions.TemplateError: ValueError: Template error: float got invalid input 'unknown' when rendering template '{{ states('sensor.daily_rainfall_in') | float  + state_attr('sensor.daily_rainfall_in', 'last_period') | float  }}' but no default was specified
+2022-07-04 16:18:01 ERROR (MainThread) [homeassistant.components.template.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unknown' when rendering template '{{ states('sensor.daily_rainfall_in') | float  + state_attr('sensor.daily_rainfall_in', 'last_period') | float  }}' but no default was specified') while processing template 'Template("{{ states('sensor.daily_rainfall_in') | float  + state_attr('sensor.daily_rainfall_in', 'last_period') | float  }}")' for attribute '_attr_native_value' in entity 'sensor.previous_rainfall'
+2022-07-04 16:18:01 WARNING (MainThread) [homeassistant.components.homeassistant.triggers.numeric_state] Error initializing 'Forecast Low Near Freezing' trigger: In 'numeric_state' condition: entity sensor.tonights_low_temp state '' cannot be processed as a number
+2022-07-04 16:18:01 WARNING (MainThread) [homeassistant.components.homeassistant.triggers.numeric_state] Error initializing 'Forecast Low Above Freezing' trigger: In 'numeric_state' condition: entity sensor.tonights_low_temp state '' cannot be processed as a number
+2022-07-04 16:18:01 ERROR (MainThread) [custom_components.frigate.api] Error fetching information from http://192.168.1.252:5001/api/stats: Cannot connect to host 192.168.1.252:5001 ssl:default [Connect call failed ('192.168.1.252', 5001)]
+2022-07-04 16:18:11 ERROR (MainThread) [custom_components.frigate.api] Error fetching information from http://192.168.1.252:5001/api/stats: Cannot connect to host 192.168.1.252:5001 ssl:default [Connect call failed ('192.168.1.252', 5001)]
+2022-07-04 16:18:32 ERROR (MainThread) [custom_components.frigate.api] Error fetching information from http://192.168.1.252:5001/api/stats: Cannot connect to host 192.168.1.252:5001 ssl:default [Connect call failed ('192.168.1.252', 5001)]
+2022-07-04 16:18:51 ERROR (MainThread) [homeassistant] Error doing job: Task exception was never retrieved
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/components/google_assistant/report_state.py", line 121, in initial_report
+    entity_data = entity.query_serialize()
+  File "/usr/src/homeassistant/homeassistant/components/google_assistant/helpers.py", line 648, in query_serialize
+    deep_update(attrs, trt.query_attributes())
+  File "/usr/src/homeassistant/homeassistant/components/google_assistant/trait.py", line 838, in query_attributes
+    temp = round(temp_util.convert(float(current_temp), unit, TEMP_CELSIUS), 1)
+ValueError: could not convert string to float: ''
+2022-07-04 16:19:12 ERROR (MainThread) [custom_components.frigate.api] Error fetching information from http://192.168.1.252:5001/api/stats: Cannot connect to host 192.168.1.252:5001 ssl:default [Connect call failed ('192.168.1.252', 5001)]
+2022-07-04 16:20:32 ERROR (MainThread) [custom_components.frigate.api] Error fetching information from http://192.168.1.252:5001/api/stats: Cannot connect to host 192.168.1.252:5001 ssl:default [Connect call failed ('192.168.1.252', 5001)]
+2022-07-04 16:21:52 ERROR (MainThread) [custom_components.frigate.api] Error fetching information from http://192.168.1.252:5001/api/stats: Cannot connect to host 192.168.1.252:5001 ssl:default [Connect call failed ('192.168.1.252', 5001)]
+2022-07-04 16:33:00 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-04 16:48:29 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-04 17:03:59 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-04 17:19:30 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-04 17:35:00 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-04 17:50:30 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-04 18:06:00 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-04 18:21:31 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-04 18:37:08 WARNING (MainThread) [homeassistant.helpers.entity] Update of weather.edgefield_house is taking over 10 seconds
+2022-07-04 18:37:09 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-04 18:52:30 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-04 19:08:00 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-04 19:09:34 WARNING (MainThread) [custom_components.weatheralerts.sensor] [SCZ025,SCC037] Could not update the sensor (ClientConnectorError)
+2022-07-04 19:23:30 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-04 19:37:59 ERROR (MainThread) [homeassistant.components.nws] Error requesting NWS forecast station KDNL data: 500, message='Internal Server Error', url=URL('https://api.weather.gov/gridpoints/CAE/25,46/forecast')
+2022-07-04 19:39:02 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-04 19:46:34 WARNING (MainThread) [custom_components.weatheralerts.sensor] [SCZ025,SCC037] Could not update the sensor (ClientConnectorError)
+2022-07-04 19:54:30 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-04 19:58:04 WARNING (MainThread) [custom_components.weatheralerts.sensor] [SCZ025,SCC037] Could not update the sensor (ClientConnectorError)
+2022-07-04 19:58:12 ERROR (MainThread) [homeassistant.components.nws] Error requesting NWS observation station KDNL data: Cannot connect to host api.weather.gov:443 ssl:default [Try again]
+2022-07-04 20:10:00 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-04 20:25:30 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-04 20:41:00 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-04 20:56:30 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-04 21:12:00 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-04 21:27:30 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-04 21:40:10 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.driveway] Error from stream worker: Error opening stream (ERRORTYPE_5, I/O error) rtmp://192.168.1.252/live/driveway
+2022-07-04 21:40:50 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.driveway] Error from stream worker: Error opening stream (ERRORTYPE_5, I/O error) rtmp://192.168.1.252/live/driveway
+2022-07-04 21:41:40 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.driveway] Error from stream worker: Error opening stream (ERRORTYPE_5, I/O error) rtmp://192.168.1.252/live/driveway
+2022-07-04 21:42:40 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.driveway] Error from stream worker: Error opening stream (ERRORTYPE_5, I/O error) rtmp://192.168.1.252/live/driveway
+2022-07-04 21:43:00 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-04 21:43:50 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.driveway] Error from stream worker: Error opening stream (ERRORTYPE_5, I/O error) rtmp://192.168.1.252/live/driveway
+2022-07-04 21:44:09 WARNING (MainThread) [homeassistant.helpers.entity] Update of sensor.weatheralerts_1 is taking over 10 seconds
+2022-07-04 21:44:09 WARNING (MainThread) [custom_components.weatheralerts.sensor] [SCZ025,SCC037] Could not update the sensor (TimeoutError)
+2022-07-04 21:45:10 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.driveway] Error from stream worker: Error opening stream (ERRORTYPE_5, I/O error) rtmp://192.168.1.252/live/driveway
+2022-07-04 21:46:41 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.driveway] Error from stream worker: Error opening stream (ERRORTYPE_5, I/O error) rtmp://192.168.1.252/live/driveway
+2022-07-04 21:48:21 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.driveway] Error from stream worker: Error opening stream (ERRORTYPE_5, I/O error) rtmp://192.168.1.252/live/driveway
+2022-07-04 21:50:11 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.driveway] Error from stream worker: Error opening stream (ERRORTYPE_5, I/O error) rtmp://192.168.1.252/live/driveway
+2022-07-04 21:52:11 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.driveway] Error from stream worker: Error opening stream (ERRORTYPE_5, I/O error) rtmp://192.168.1.252/live/driveway
+2022-07-04 21:54:21 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.driveway] Error from stream worker: Error opening stream (ERRORTYPE_5, I/O error) rtmp://192.168.1.252/live/driveway
+2022-07-04 21:56:41 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.driveway] Error from stream worker: Error opening stream (ERRORTYPE_5, I/O error) rtmp://192.168.1.252/live/driveway
+2022-07-04 21:58:31 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-04 21:59:11 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.driveway] Error from stream worker: Error opening stream (ERRORTYPE_5, I/O error) rtmp://192.168.1.252/live/driveway
+2022-07-04 22:00:00 ERROR (MainThread) [homeassistant.components.automation.water_heater_turn_down] Water Heater Turn Down: Error executing script. Invalid data for call_service at pos 1: extra keys not allowed @ data['device_id']
+2022-07-04 22:00:00 ERROR (MainThread) [homeassistant.components.automation.water_heater_turn_down] Error while executing automation automation.water_heater_turn_down: extra keys not allowed @ data['device_id']
+2022-07-04 22:01:51 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.driveway] Error from stream worker: Error opening stream (ERRORTYPE_5, I/O error) rtmp://192.168.1.252/live/driveway
+2022-07-04 22:04:41 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.driveway] Error from stream worker: Error opening stream (ERRORTYPE_5, I/O error) rtmp://192.168.1.252/live/driveway
+2022-07-04 22:07:41 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.driveway] Error from stream worker: Error opening stream (ERRORTYPE_5, I/O error) rtmp://192.168.1.252/live/driveway
+2022-07-04 22:10:51 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.driveway] Error from stream worker: Error opening stream (ERRORTYPE_5, I/O error) rtmp://192.168.1.252/live/driveway
+2022-07-04 22:14:01 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-04 22:14:11 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.driveway] Error from stream worker: Error opening stream (ERRORTYPE_5, I/O error) rtmp://192.168.1.252/live/driveway
+2022-07-04 22:17:41 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.driveway] Error from stream worker: Error opening stream (ERRORTYPE_5, I/O error) rtmp://192.168.1.252/live/driveway
+2022-07-04 22:21:21 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.driveway] Error from stream worker: Error opening stream (ERRORTYPE_5, I/O error) rtmp://192.168.1.252/live/driveway
+2022-07-04 22:25:11 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.driveway] Error from stream worker: Error opening stream (ERRORTYPE_5, I/O error) rtmp://192.168.1.252/live/driveway
+2022-07-04 22:29:12 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.driveway] Error from stream worker: Error opening stream (ERRORTYPE_5, I/O error) rtmp://192.168.1.252/live/driveway
+2022-07-04 22:29:30 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-04 22:33:22 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.driveway] Error from stream worker: Error opening stream (ERRORTYPE_5, I/O error) rtmp://192.168.1.252/live/driveway
+2022-07-04 22:37:42 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.driveway] Error from stream worker: Error opening stream (ERRORTYPE_5, I/O error) rtmp://192.168.1.252/live/driveway
+2022-07-04 22:42:12 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.driveway] Error from stream worker: Error opening stream (ERRORTYPE_5, I/O error) rtmp://192.168.1.252/live/driveway
+2022-07-04 22:45:01 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-04 22:49:00 ERROR (MainThread) [homeassistant.components.nws] Error requesting NWS forecast station KDNL data: 500, message='Internal Server Error', url=URL('https://api.weather.gov/gridpoints/CAE/25,46/forecast')
+2022-07-04 23:00:31 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-04 23:16:02 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-04 23:31:31 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-04 23:47:00 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-05 00:02:31 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-05 00:18:01 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-05 00:33:31 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-05 00:49:02 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-05 01:04:31 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-05 01:20:01 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-05 01:35:31 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-05 01:51:01 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-05 02:06:31 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-05 02:22:01 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-05 02:37:31 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-05 02:53:01 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-05 03:08:31 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-05 03:24:01 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-05 03:36:35 WARNING (MainThread) [custom_components.weatheralerts.sensor] [SCZ025,SCC037] Could not update the sensor (ClientConnectorError)
+2022-07-05 03:37:05 WARNING (MainThread) [custom_components.weatheralerts.sensor] [SCZ025,SCC037] Still no update (ClientConnectorError)
+2022-07-05 03:37:35 WARNING (MainThread) [custom_components.weatheralerts.sensor] [SCZ025,SCC037] Still no update (ClientConnectorError)
+2022-07-05 03:38:05 WARNING (MainThread) [custom_components.weatheralerts.sensor] [SCZ025,SCC037] Still no update (ClientConnectorError)
+2022-07-05 03:38:07 ERROR (Thread-15) [pyeconet.api] EcoNet MQTT unexpected disconnect. Attempting to reconnect.
+2022-07-05 03:38:12 ERROR (Thread-15) [paho.mqtt.client] Caught exception in on_disconnect: [Errno -3] Try again
+2022-07-05 03:38:12 ERROR (Thread-15) [root] Uncaught thread exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/threading.py", line 973, in _bootstrap_inner
+    self.run()
+  File "/usr/local/lib/python3.9/threading.py", line 910, in run
+    self._target(*self._args, **self._kwargs)
+  File "/usr/local/lib/python3.9/site-packages/paho/mqtt/client.py", line 3591, in _thread_main
+    self.loop_forever(retry_first_connection=True)
+  File "/usr/local/lib/python3.9/site-packages/paho/mqtt/client.py", line 1756, in loop_forever
+    rc = self._loop(timeout)
+  File "/usr/local/lib/python3.9/site-packages/paho/mqtt/client.py", line 1185, in _loop
+    return self.loop_misc()
+  File "/usr/local/lib/python3.9/site-packages/paho/mqtt/client.py", line 1610, in loop_misc
+    self._check_keepalive()
+  File "/usr/local/lib/python3.9/site-packages/paho/mqtt/client.py", line 2560, in _check_keepalive
+    self._do_on_disconnect(rc)
+  File "/usr/local/lib/python3.9/site-packages/paho/mqtt/client.py", line 3475, in _do_on_disconnect
+    on_disconnect(self, self._userdata, rc)
+  File "/usr/local/lib/python3.9/site-packages/pyeconet/api.py", line 218, in _on_disconnect
+    client.reconnect()
+  File "/usr/local/lib/python3.9/site-packages/paho/mqtt/client.py", line 1044, in reconnect
+    sock = self._create_socket_connection()
+  File "/usr/local/lib/python3.9/site-packages/paho/mqtt/client.py", line 3685, in _create_socket_connection
+    return socket.create_connection(addr, timeout=self._connect_timeout, source_address=source)
+  File "/usr/local/lib/python3.9/socket.py", line 823, in create_connection
+    for res in getaddrinfo(host, port, 0, SOCK_STREAM):
+  File "/usr/local/lib/python3.9/socket.py", line 954, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Try again
+2022-07-05 03:38:24 ERROR (MainThread) [snitun.multiplexer.core] Ping fails, no response from peer
+2022-07-05 03:38:35 WARNING (MainThread) [custom_components.weatheralerts.sensor] [SCZ025,SCC037] Still no update (ClientConnectorError)
+2022-07-05 03:38:36 ERROR (MainThread) [snitun.client.client_peer] Can't connect to SniTun server us-east-1-4.ui.nabu.casa:443 with: [Errno -3] Try again
+2022-07-05 03:38:36 ERROR (MainThread) [hass_nabucasa.remote] Connection problem to snitun server
+2022-07-05 03:38:44 ERROR (MainThread) [snitun.client.client_peer] Can't connect to SniTun server us-east-1-4.ui.nabu.casa:443 with: [Errno -3] Try again
+2022-07-05 03:38:44 ERROR (MainThread) [hass_nabucasa.remote] Connection problem to snitun server
+2022-07-05 03:38:53 ERROR (MainThread) [snitun.client.client_peer] Can't connect to SniTun server us-east-1-4.ui.nabu.casa:443 with: [Errno -3] Try again
+2022-07-05 03:38:53 ERROR (MainThread) [hass_nabucasa.remote] Connection problem to snitun server
+2022-07-05 03:39:33 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-05 03:40:05 WARNING (MainThread) [custom_components.weatheralerts.sensor] [SCZ025,SCC037] Could not update the sensor (ClientConnectorError)
+2022-07-05 03:40:05 ERROR (MainThread) [homeassistant.components.nws] Error requesting NWS forecast station KDNL data: Cannot connect to host api.weather.gov:443 ssl:default [Try again]
+2022-07-05 03:40:35 WARNING (MainThread) [custom_components.weatheralerts.sensor] [SCZ025,SCC037] Still no update (ClientConnectorError)
+2022-07-05 03:41:26 ERROR (MainThread) [snitun.multiplexer.core] Ping fails, no response from peer
+2022-07-05 03:41:35 WARNING (MainThread) [custom_components.weatheralerts.sensor] [SCZ025,SCC037] Could not update the sensor (ClientConnectorError)
+2022-07-05 03:43:10 WARNING (MainThread) [homeassistant.helpers.entity] Update of sensor.weatheralerts_1 is taking over 10 seconds
+2022-07-05 03:43:10 WARNING (MainThread) [custom_components.weatheralerts.sensor] [SCZ025,SCC037] Could not update the sensor (TimeoutError)
+2022-07-05 03:55:01 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-05 04:10:31 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-05 04:21:05 ERROR (MainThread) [homeassistant.components.nws] Error requesting NWS forecast station KDNL data: 500, message='Internal Server Error', url=URL('https://api.weather.gov/gridpoints/CAE/25,46/forecast')
+2022-07-05 04:26:01 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-05 04:41:31 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-05 04:57:02 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-05 05:12:31 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-05 05:28:01 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-05 05:43:32 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-05 05:59:02 WARNING (MainThread) [homeassistant.helpers.template] Template variable warning: 'dict object' has no attribute 'lowtemp' when rendering '{% set forecast = state_attr('weather.edgefield_house','forecast')[1] %} {{ forecast.lowtemp }}'
+2022-07-05 06:00:00 ERROR (MainThread) [homeassistant.components.automation.water_heater_turn_up] Water Heater Turn Up: Error executing script. Invalid data for call_service at pos 1: extra keys not allowed @ data['device_id']
+2022-07-05 06:00:00 ERROR (MainThread) [homeassistant.components.automation.water_heater_turn_up] Error while executing automation automation.water_heater_turn_up: extra keys not allowed @ data['device_id']

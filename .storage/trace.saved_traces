@@ -1,0 +1,1229 @@
+{
+    "version": 1,
+    "minor_version": 1,
+    "key": "trace.saved_traces",
+    "data": {
+        "automation.None": [
+            {
+                "extended_dict": {
+                    "last_step": "condition/0/conditions/2",
+                    "run_id": "84cbb69134097714dbc98753057f3935",
+                    "state": "running",
+                    "script_execution": null,
+                    "timestamp": {
+                        "start": "2022-07-02T11:30:08.887910+00:00",
+                        "finish": null
+                    },
+                    "domain": "automation",
+                    "item_id": "None",
+                    "trigger": "state of sensor.weatheralerts_1_alert_1_last_changed",
+                    "trace": {
+                        "trigger/0": [
+                            {
+                                "path": "trigger/0",
+                                "timestamp": "2022-07-02T11:30:08.887926+00:00",
+                                "changed_variables": {
+                                    "this": {
+                                        "entity_id": "automation.weather_alerts_pushbullet_notification_1",
+                                        "state": "on",
+                                        "attributes": {
+                                            "last_triggered": "2022-07-02T10:43:09.130480+00:00",
+                                            "mode": "single",
+                                            "current": 0,
+                                            "friendly_name": "Weather Alerts Pushbullet Notification - 1"
+                                        },
+                                        "last_changed": "2022-07-02T09:58:06.106726+00:00",
+                                        "last_updated": "2022-07-02T10:43:09.140341+00:00",
+                                        "context": {
+                                            "id": "01G6Z83NPCBF57PKVQ9E1JGAY8",
+                                            "parent_id": "01G6Z83NNPW6MNS4PN2CK8DYEW",
+                                            "user_id": null
+                                        }
+                                    },
+                                    "trigger": {
+                                        "id": "0",
+                                        "idx": "0",
+                                        "platform": "state",
+                                        "entity_id": "sensor.weatheralerts_1_alert_1_last_changed",
+                                        "from_state": {
+                                            "entity_id": "sensor.weatheralerts_1_alert_1_last_changed",
+                                            "state": "2022-07-02 11:30:08.881815+00:00",
+                                            "attributes": {
+                                                "friendly_name": "weatheralerts_1_alert_1_last_changed"
+                                            },
+                                            "last_changed": "2022-07-02T11:30:08.882512+00:00",
+                                            "last_updated": "2022-07-02T11:30:08.882512+00:00",
+                                            "context": {
+                                                "id": "01G6ZASQB0HF85CGCHDB4A7VE0",
+                                                "parent_id": null,
+                                                "user_id": null
+                                            }
+                                        },
+                                        "to_state": {
+                                            "entity_id": "sensor.weatheralerts_1_alert_1_last_changed",
+                                            "state": "2022-07-02 11:30:08.884421+00:00",
+                                            "attributes": {
+                                                "friendly_name": "weatheralerts_1_alert_1_last_changed"
+                                            },
+                                            "last_changed": "2022-07-02T11:30:08.884755+00:00",
+                                            "last_updated": "2022-07-02T11:30:08.884755+00:00",
+                                            "context": {
+                                                "id": "01G6ZASQB0HF85CGCHDB4A7VE0",
+                                                "parent_id": null,
+                                                "user_id": null
+                                            }
+                                        },
+                                        "for": null,
+                                        "attribute": null,
+                                        "description": "state of sensor.weatheralerts_1_alert_1_last_changed"
+                                    }
+                                }
+                            }
+                        ],
+                        "condition/0": [
+                            {
+                                "path": "condition/0",
+                                "timestamp": "2022-07-02T11:30:08.887937+00:00",
+                                "result": {
+                                    "result": false
+                                }
+                            }
+                        ],
+                        "condition/0/conditions/0": [
+                            {
+                                "path": "condition/0/conditions/0",
+                                "timestamp": "2022-07-02T11:30:08.887946+00:00",
+                                "result": {
+                                    "result": true,
+                                    "entities": [
+                                        "sensor.weatheralerts_1_alerts_are_active"
+                                    ]
+                                }
+                            }
+                        ],
+                        "condition/0/conditions/1": [
+                            {
+                                "path": "condition/0/conditions/1",
+                                "timestamp": "2022-07-02T11:30:08.887995+00:00",
+                                "result": {
+                                    "result": true,
+                                    "entities": [
+                                        "sensor.weatheralerts_1_alert_1"
+                                    ]
+                                }
+                            }
+                        ],
+                        "condition/0/conditions/2": [
+                            {
+                                "path": "condition/0/conditions/2",
+                                "timestamp": "2022-07-02T11:30:08.888058+00:00",
+                                "result": {
+                                    "result": false,
+                                    "entities": [
+                                        "sensor.weatheralerts_1_alert_1",
+                                        "input_text.weatheralerts_1_triggered_pushbullet_alert_ids"
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    "config": {
+                        "alias": "Weather Alerts Pushbullet Notification - 1",
+                        "trigger": {
+                            "platform": "state",
+                            "entity_id": "sensor.weatheralerts_1_alert_1_last_changed"
+                        },
+                        "condition": [
+                            {
+                                "condition": "and",
+                                "conditions": [
+                                    {
+                                        "condition": "template",
+                                        "value_template": "{{ states('sensor.weatheralerts_1_alerts_are_active') == 'Yes' }}"
+                                    },
+                                    {
+                                        "condition": "template",
+                                        "value_template": "{{ (as_timestamp(now()) - as_timestamp(state_attr('sensor.weatheralerts_1_alert_1', 'alert_sent'))) < 3600 }}"
+                                    },
+                                    {
+                                        "condition": "template",
+                                        "value_template": "{{ state_attr('sensor.weatheralerts_1_alert_1', 'alert_id') not in states('input_text.weatheralerts_1_triggered_pushbullet_alert_ids') }}"
+                                    }
+                                ]
+                            }
+                        ],
+                        "action": [
+                            {
+                                "service": "notify.mobile_app_bills_iphone",
+                                "data_template": {
+                                    "message": "Current NWS Weather Alerts:\n  \n{% if states('sensor.weatheralerts_1_alerts_are_active') == \"No\" %} No alerts at this time for {{ state_attr('sensor.weatheralerts_1', 'friendly_name') }}. {% endif %} {% if states.sensor.weatheralerts_1_alert_1.state == \"on\" %} {{ states.sensor.weatheralerts_1_alert_1.attributes.display_title }} for {{ state_attr('sensor.weatheralerts_1', 'friendly_name') }}\n  \n{% endif %} {% if states.sensor.weatheralerts_1_alert_2.state == \"on\" %} {{ states.sensor.weatheralerts_1_alert_2.attributes.display_title }} for {{ state_attr('sensor.weatheralerts_1', 'friendly_name') }}\n  \n{% endif %} {% if states.sensor.weatheralerts_1_alert_3.state == \"on\" %} {{ states.sensor.weatheralerts_1_alert_3.attributes.display_title }} for {{ state_attr('sensor.weatheralerts_1', 'friendly_name') }}\n  \n{% endif %} {% if states.sensor.weatheralerts_1_alert_4.state == \"on\" %} {{ states.sensor.weatheralerts_1_alert_4.attributes.display_title }} for {{ state_attr('sensor.weatheralerts_1', 'friendly_name') }}\n  \n{% endif %} {% if states.sensor.weatheralerts_1_alert_5.state == \"on\" %} {{ states.sensor.weatheralerts_1_alert_5.attributes.display_title }} for {{ state_attr('sensor.weatheralerts_1', 'friendly_name') }} {% endif %}\n"
+                                }
+                            },
+                            {
+                                "service": "input_text.set_value",
+                                "data_template": {
+                                    "entity_id": "input_text.weatheralerts_1_triggered_pushbullet_alert_ids",
+                                    "value": "{{ state_attr('sensor.weatheralerts_1_alert_1', 'alert_id') }} {{ state_attr('sensor.weatheralerts_1_alert_2', 'alert_id') }} {{ state_attr('sensor.weatheralerts_1_alert_3', 'alert_id') }} {{ state_attr('sensor.weatheralerts_1_alert_4', 'alert_id') }} {{ state_attr('sensor.weatheralerts_1_alert_5', 'alert_id') }}"
+                                }
+                            }
+                        ]
+                    },
+                    "blueprint_inputs": null,
+                    "context": {
+                        "id": "01G6ZASQBQ7K181RQ1WA9TQBSH",
+                        "parent_id": "01G6ZASQB0HF85CGCHDB4A7VE0",
+                        "user_id": null
+                    }
+                },
+                "short_dict": {
+                    "last_step": "condition/0/conditions/2",
+                    "run_id": "84cbb69134097714dbc98753057f3935",
+                    "state": "running",
+                    "script_execution": null,
+                    "timestamp": {
+                        "start": "2022-07-02T11:30:08.887910+00:00",
+                        "finish": null
+                    },
+                    "domain": "automation",
+                    "item_id": "None",
+                    "trigger": "state of sensor.weatheralerts_1_alert_1_last_changed"
+                }
+            },
+            {
+                "extended_dict": {
+                    "last_step": "action/1",
+                    "run_id": "6df2e1e1ffbb6350fb452be1305da7f5",
+                    "state": "running",
+                    "script_execution": null,
+                    "timestamp": {
+                        "start": "2022-07-02T12:00:00.002666+00:00",
+                        "finish": null
+                    },
+                    "domain": "automation",
+                    "item_id": "None",
+                    "trigger": "time",
+                    "trace": {
+                        "trigger/0": [
+                            {
+                                "path": "trigger/0",
+                                "timestamp": "2022-07-02T12:00:00.002879+00:00",
+                                "changed_variables": {
+                                    "this": {
+                                        "entity_id": "automation.daily_brief_yml",
+                                        "state": "on",
+                                        "attributes": {
+                                            "last_triggered": "2022-07-01T12:00:00.066216+00:00",
+                                            "mode": "single",
+                                            "current": 0,
+                                            "friendly_name": "daily_brief_yml"
+                                        },
+                                        "last_changed": "2022-07-02T09:58:06.106172+00:00",
+                                        "last_updated": "2022-07-02T09:58:06.106172+00:00",
+                                        "context": {
+                                            "id": "01G6Z5H60T974QAAW9NM0KG7TS",
+                                            "parent_id": null,
+                                            "user_id": null
+                                        }
+                                    },
+                                    "trigger": {
+                                        "id": "0",
+                                        "idx": "0",
+                                        "platform": "time",
+                                        "now": "2022-07-02T08:00:00.001123-04:00",
+                                        "description": "time",
+                                        "entity_id": null
+                                    }
+                                }
+                            }
+                        ],
+                        "action/0": [
+                            {
+                                "path": "action/0",
+                                "timestamp": "2022-07-02T12:00:00.003547+00:00",
+                                "changed_variables": {
+                                    "context": {
+                                        "id": "01G6ZCGCG2CJ0RDM1RNBPZJ90T",
+                                        "parent_id": null,
+                                        "user_id": null
+                                    }
+                                },
+                                "result": {
+                                    "params": {
+                                        "domain": "notify",
+                                        "service": "email_bill",
+                                        "service_data": {
+                                            "message": "This is your daily brief ui",
+                                            "title": "This is your daily brief ui"
+                                        },
+                                        "target": {}
+                                    },
+                                    "running_script": false,
+                                    "limit": 10
+                                }
+                            }
+                        ],
+                        "action/1": [
+                            {
+                                "path": "action/1",
+                                "timestamp": "2022-07-02T12:00:03.676584+00:00",
+                                "result": {
+                                    "params": {
+                                        "domain": "notify",
+                                        "service": "notify",
+                                        "service_data": {
+                                            "message": "This is your daily brief ui notify.notify",
+                                            "title": "This is your daily brief ui notify.notify"
+                                        },
+                                        "target": {}
+                                    },
+                                    "running_script": false,
+                                    "limit": 10
+                                }
+                            }
+                        ]
+                    },
+                    "config": {
+                        "alias": "daily_brief_yml",
+                        "trigger": [
+                            {
+                                "platform": "time",
+                                "at": "08:00:00"
+                            }
+                        ],
+                        "action": [
+                            {
+                                "service": "notify.email_bill",
+                                "data": {
+                                    "message": "This is your daily brief ui",
+                                    "title": "This is your daily brief ui"
+                                }
+                            },
+                            {
+                                "service": "notify.notify",
+                                "data": {
+                                    "message": "This is your daily brief ui notify.notify",
+                                    "title": "This is your daily brief ui notify.notify"
+                                }
+                            }
+                        ],
+                        "mode": "single"
+                    },
+                    "blueprint_inputs": null,
+                    "context": {
+                        "id": "01G6ZCGCG2CJ0RDM1RNBPZJ90T",
+                        "parent_id": null,
+                        "user_id": null
+                    }
+                },
+                "short_dict": {
+                    "last_step": "action/1",
+                    "run_id": "6df2e1e1ffbb6350fb452be1305da7f5",
+                    "state": "running",
+                    "script_execution": null,
+                    "timestamp": {
+                        "start": "2022-07-02T12:00:00.002666+00:00",
+                        "finish": null
+                    },
+                    "domain": "automation",
+                    "item_id": "None",
+                    "trigger": "time"
+                }
+            },
+            {
+                "extended_dict": {
+                    "last_step": "condition/0/conditions/0",
+                    "run_id": "5fd885d451c9723832f26f705044eb13",
+                    "state": "running",
+                    "script_execution": null,
+                    "timestamp": {
+                        "start": "2022-07-02T12:30:09.862325+00:00",
+                        "finish": null
+                    },
+                    "domain": "automation",
+                    "item_id": "None",
+                    "trigger": "state of sensor.weatheralerts_1_alert_1_last_changed",
+                    "trace": {
+                        "trigger/0": [
+                            {
+                                "path": "trigger/0",
+                                "timestamp": "2022-07-02T12:30:09.862369+00:00",
+                                "changed_variables": {
+                                    "this": {
+                                        "entity_id": "automation.weather_alert_ui_notification_1",
+                                        "state": "on",
+                                        "attributes": {
+                                            "last_triggered": "2022-07-02T10:43:09.130107+00:00",
+                                            "mode": "single",
+                                            "current": 0,
+                                            "friendly_name": "Weather Alert UI Notification - 1"
+                                        },
+                                        "last_changed": "2022-07-02T09:58:06.106504+00:00",
+                                        "last_updated": "2022-07-02T10:43:09.141267+00:00",
+                                        "context": {
+                                            "id": "01G6Z83NPBTXRJPB6HJ39CZ2NT",
+                                            "parent_id": "01G6Z83NNPW6MNS4PN2CK8DYEW",
+                                            "user_id": null
+                                        }
+                                    },
+                                    "trigger": {
+                                        "id": "0",
+                                        "idx": "0",
+                                        "platform": "state",
+                                        "entity_id": "sensor.weatheralerts_1_alert_1_last_changed",
+                                        "from_state": {
+                                            "entity_id": "sensor.weatheralerts_1_alert_1_last_changed",
+                                            "state": "2022-07-02 11:30:08.884421+00:00",
+                                            "attributes": {
+                                                "friendly_name": "weatheralerts_1_alert_1_last_changed"
+                                            },
+                                            "last_changed": "2022-07-02T11:30:08.884755+00:00",
+                                            "last_updated": "2022-07-02T11:30:08.884755+00:00",
+                                            "context": {
+                                                "id": "01G6ZASQB0HF85CGCHDB4A7VE0",
+                                                "parent_id": null,
+                                                "user_id": null
+                                            }
+                                        },
+                                        "to_state": {
+                                            "entity_id": "sensor.weatheralerts_1_alert_1_last_changed",
+                                            "state": "unknown",
+                                            "attributes": {
+                                                "friendly_name": "weatheralerts_1_alert_1_last_changed"
+                                            },
+                                            "last_changed": "2022-07-02T12:30:09.859518+00:00",
+                                            "last_updated": "2022-07-02T12:30:09.859518+00:00",
+                                            "context": {
+                                                "id": "01G6ZE7KX7QKK1NCX7CCWQRGA9",
+                                                "parent_id": null,
+                                                "user_id": null
+                                            }
+                                        },
+                                        "for": null,
+                                        "attribute": null,
+                                        "description": "state of sensor.weatheralerts_1_alert_1_last_changed"
+                                    }
+                                }
+                            }
+                        ],
+                        "condition/0": [
+                            {
+                                "path": "condition/0",
+                                "timestamp": "2022-07-02T12:30:09.862403+00:00",
+                                "result": {
+                                    "result": false
+                                }
+                            }
+                        ],
+                        "condition/0/conditions/0": [
+                            {
+                                "path": "condition/0/conditions/0",
+                                "timestamp": "2022-07-02T12:30:09.862418+00:00",
+                                "result": {
+                                    "result": false,
+                                    "entities": [
+                                        "sensor.weatheralerts_1_alerts_are_active"
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    "config": {
+                        "alias": "Weather Alert UI Notification - 1",
+                        "initial_state": "on",
+                        "trigger": [
+                            {
+                                "platform": "state",
+                                "entity_id": "sensor.weatheralerts_1_alert_1_last_changed"
+                            },
+                            {
+                                "platform": "homeassistant",
+                                "event": "start"
+                            }
+                        ],
+                        "condition": [
+                            {
+                                "condition": "and",
+                                "conditions": [
+                                    {
+                                        "condition": "template",
+                                        "value_template": "{{ states('sensor.weatheralerts_1_alerts_are_active') == 'Yes' }}"
+                                    },
+                                    {
+                                        "condition": "template",
+                                        "value_template": "{{ (as_timestamp(now()) - as_timestamp(state_attr('sensor.weatheralerts_1_alert_1', 'alert_sent'))) < 3600 }}"
+                                    },
+                                    {
+                                        "condition": "template",
+                                        "value_template": "{{ state_attr('sensor.weatheralerts_1_alert_1', 'alert_id') not in states('input_text.weatheralerts_1_triggered_ui_alert_ids') }}"
+                                    }
+                                ]
+                            }
+                        ],
+                        "action": [
+                            {
+                                "service": "script.weatheralerts_1_popup_on_wx_alert",
+                                "data_template": {
+                                    "title": "{% if (states('sensor.weatheralerts_1_alert_1') == 'on') and ((as_timestamp(now()) - as_timestamp(state_attr('sensor.weatheralerts_1_alert_1', 'alert_effective'))|float) <= 3600) %}\n  {{ state_attr('sensor.weatheralerts_1_alert_1', 'display_title') }}\n{% else %}\n  Weather Alerts\n{% endif %}\n",
+                                    "message": "{% if (states('sensor.weatheralerts_1_alert_1') == 'on') and ((as_timestamp(now()) - as_timestamp(state_attr('sensor.weatheralerts_1_alert_1', 'alert_effective'))|float) <= 3600) %}\n  {{ state_attr('sensor.weatheralerts_1_alert_1', 'display_message') }}\n{% endif %} {% if (states('sensor.weatheralerts_1_alert_1') == 'on') and ((as_timestamp(now()) - as_timestamp(state_attr('sensor.weatheralerts_1_alert_1', 'alert_effective'))|float) > 3600) %}\n  <hr>Alert: <br>{{ state_attr('sensor.weatheralerts_1_alert_1', 'display_title') }}\n{% endif %} {% if (states('sensor.weatheralerts_1_alert_2') == 'on') and ((as_timestamp(now()) - as_timestamp(state_attr('sensor.weatheralerts_1_alert_2', 'alert_effective'))|float) <= 3600) %}\n  <hr>{{ state_attr('sensor.weatheralerts_1_alert_2', 'display_title') }}<br>\n  {{ state_attr('sensor.weatheralerts_1_alert_2', 'display_message') }}\n{% endif %} {% if (states('sensor.weatheralerts_1_alert_2') == 'on') and ((as_timestamp(now()) - as_timestamp(state_attr('sensor.weatheralerts_1_alert_2', 'alert_effective'))|float) > 3600) %}\n  <hr>Alert: <br>{{ state_attr('sensor.weatheralerts_1_alert_2', 'display_title') }}\n{% endif %} {% if (states('sensor.weatheralerts_1_alert_3') == 'on') and ((as_timestamp(now()) - as_timestamp(state_attr('sensor.weatheralerts_1_alert_3', 'alert_effective'))|float) <= 3600) %}\n  <hr>{{ state_attr('sensor.weatheralerts_1_alert_3', 'display_title') }}<br>\n  {{ state_attr('sensor.weatheralerts_1_alert_3', 'display_message') }}\n{% endif %} {% if (states('sensor.weatheralerts_1_alert_3') == 'on') and ((as_timestamp(now()) - as_timestamp(state_attr('sensor.weatheralerts_1_alert_3', 'alert_effective'))|float) > 3600) %}\n  <hr>Alert: <br>{{ state_attr('sensor.weatheralerts_1_alert_3', 'display_title') }}\n{% endif %} {% if (states('sensor.weatheralerts_1_alert_4') == 'on') and ((as_timestamp(now()) - as_timestamp(state_attr('sensor.weatheralerts_1_alert_4', 'alert_effective'))|float) <= 3600) %}\n  <hr>{{ state_attr('sensor.weatheralerts_1_alert_4', 'display_title') }}<br>\n  {{ state_attr('sensor.weatheralerts_1_alert_4', 'display_message') }}\n{% endif %} {% if (states('sensor.weatheralerts_1_alert_4') == 'on') and ((as_timestamp(now()) - as_timestamp(state_attr('sensor.weatheralerts_1_alert_4', 'alert_effective'))|float) > 3600) %}\n  <hr>Alert: <br>{{ state_attr('sensor.weatheralerts_1_alert_4', 'display_title') }}\n{% endif %} {% if (states('sensor.weatheralerts_1_alert_5') == 'on') and ((as_timestamp(now()) - as_timestamp(state_attr('sensor.weatheralerts_1_alert_5', 'alert_effective'))|float) <= 3600) %}\n  <hr>{{ state_attr('sensor.weatheralerts_1_alert_5', 'display_title') }}<br>\n  {{ state_attr('sensor.weatheralerts_1_alert_5', 'display_message') }}\n{% endif %} {% if (states('sensor.weatheralerts_1_alert_5') == 'on') and ((as_timestamp(now()) - as_timestamp(state_attr('sensor.weatheralerts_1_alert_5', 'alert_effective'))|float) > 3600) %}\n  <hr>Alert: <br>{{ state_attr('sensor.weatheralerts_1_alert_5', 'display_title') }}\n{% endif %}\n"
+                                }
+                            },
+                            {
+                                "service": "input_text.set_value",
+                                "data_template": {
+                                    "entity_id": "input_text.weatheralerts_1_triggered_ui_alert_ids",
+                                    "value": "{{ state_attr('sensor.weatheralerts_1_alert_1', 'alert_id') }} {{ state_attr('sensor.weatheralerts_1_alert_2', 'alert_id') }} {{ state_attr('sensor.weatheralerts_1_alert_3', 'alert_id') }} {{ state_attr('sensor.weatheralerts_1_alert_4', 'alert_id') }} {{ state_attr('sensor.weatheralerts_1_alert_5', 'alert_id') }}"
+                                }
+                            }
+                        ]
+                    },
+                    "blueprint_inputs": null,
+                    "context": {
+                        "id": "01G6ZE7KY6R9N615NM7SX1BYC2",
+                        "parent_id": "01G6ZE7KX7QKK1NCX7CCWQRGA9",
+                        "user_id": null
+                    }
+                },
+                "short_dict": {
+                    "last_step": "condition/0/conditions/0",
+                    "run_id": "5fd885d451c9723832f26f705044eb13",
+                    "state": "running",
+                    "script_execution": null,
+                    "timestamp": {
+                        "start": "2022-07-02T12:30:09.862325+00:00",
+                        "finish": null
+                    },
+                    "domain": "automation",
+                    "item_id": "None",
+                    "trigger": "state of sensor.weatheralerts_1_alert_1_last_changed"
+                }
+            },
+            {
+                "extended_dict": {
+                    "last_step": "condition/0/conditions/0",
+                    "run_id": "8d7cca88900387477cbd5cbc1ea9a178",
+                    "state": "running",
+                    "script_execution": null,
+                    "timestamp": {
+                        "start": "2022-07-02T12:30:09.862524+00:00",
+                        "finish": null
+                    },
+                    "domain": "automation",
+                    "item_id": "None",
+                    "trigger": "state of sensor.weatheralerts_1_alert_1_last_changed",
+                    "trace": {
+                        "trigger/0": [
+                            {
+                                "path": "trigger/0",
+                                "timestamp": "2022-07-02T12:30:09.862547+00:00",
+                                "changed_variables": {
+                                    "this": {
+                                        "entity_id": "automation.weather_alerts_pushbullet_notification_1",
+                                        "state": "on",
+                                        "attributes": {
+                                            "last_triggered": "2022-07-02T10:43:09.130480+00:00",
+                                            "mode": "single",
+                                            "current": 0,
+                                            "friendly_name": "Weather Alerts Pushbullet Notification - 1"
+                                        },
+                                        "last_changed": "2022-07-02T09:58:06.106726+00:00",
+                                        "last_updated": "2022-07-02T10:43:09.140341+00:00",
+                                        "context": {
+                                            "id": "01G6Z83NPCBF57PKVQ9E1JGAY8",
+                                            "parent_id": "01G6Z83NNPW6MNS4PN2CK8DYEW",
+                                            "user_id": null
+                                        }
+                                    },
+                                    "trigger": {
+                                        "id": "0",
+                                        "idx": "0",
+                                        "platform": "state",
+                                        "entity_id": "sensor.weatheralerts_1_alert_1_last_changed",
+                                        "from_state": {
+                                            "entity_id": "sensor.weatheralerts_1_alert_1_last_changed",
+                                            "state": "2022-07-02 11:30:08.884421+00:00",
+                                            "attributes": {
+                                                "friendly_name": "weatheralerts_1_alert_1_last_changed"
+                                            },
+                                            "last_changed": "2022-07-02T11:30:08.884755+00:00",
+                                            "last_updated": "2022-07-02T11:30:08.884755+00:00",
+                                            "context": {
+                                                "id": "01G6ZASQB0HF85CGCHDB4A7VE0",
+                                                "parent_id": null,
+                                                "user_id": null
+                                            }
+                                        },
+                                        "to_state": {
+                                            "entity_id": "sensor.weatheralerts_1_alert_1_last_changed",
+                                            "state": "unknown",
+                                            "attributes": {
+                                                "friendly_name": "weatheralerts_1_alert_1_last_changed"
+                                            },
+                                            "last_changed": "2022-07-02T12:30:09.859518+00:00",
+                                            "last_updated": "2022-07-02T12:30:09.859518+00:00",
+                                            "context": {
+                                                "id": "01G6ZE7KX7QKK1NCX7CCWQRGA9",
+                                                "parent_id": null,
+                                                "user_id": null
+                                            }
+                                        },
+                                        "for": null,
+                                        "attribute": null,
+                                        "description": "state of sensor.weatheralerts_1_alert_1_last_changed"
+                                    }
+                                }
+                            }
+                        ],
+                        "condition/0": [
+                            {
+                                "path": "condition/0",
+                                "timestamp": "2022-07-02T12:30:09.862560+00:00",
+                                "result": {
+                                    "result": false
+                                }
+                            }
+                        ],
+                        "condition/0/conditions/0": [
+                            {
+                                "path": "condition/0/conditions/0",
+                                "timestamp": "2022-07-02T12:30:09.862570+00:00",
+                                "result": {
+                                    "result": false,
+                                    "entities": [
+                                        "sensor.weatheralerts_1_alerts_are_active"
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    "config": {
+                        "alias": "Weather Alerts Pushbullet Notification - 1",
+                        "trigger": {
+                            "platform": "state",
+                            "entity_id": "sensor.weatheralerts_1_alert_1_last_changed"
+                        },
+                        "condition": [
+                            {
+                                "condition": "and",
+                                "conditions": [
+                                    {
+                                        "condition": "template",
+                                        "value_template": "{{ states('sensor.weatheralerts_1_alerts_are_active') == 'Yes' }}"
+                                    },
+                                    {
+                                        "condition": "template",
+                                        "value_template": "{{ (as_timestamp(now()) - as_timestamp(state_attr('sensor.weatheralerts_1_alert_1', 'alert_sent'))) < 3600 }}"
+                                    },
+                                    {
+                                        "condition": "template",
+                                        "value_template": "{{ state_attr('sensor.weatheralerts_1_alert_1', 'alert_id') not in states('input_text.weatheralerts_1_triggered_pushbullet_alert_ids') }}"
+                                    }
+                                ]
+                            }
+                        ],
+                        "action": [
+                            {
+                                "service": "notify.mobile_app_bills_iphone",
+                                "data_template": {
+                                    "message": "Current NWS Weather Alerts:\n  \n{% if states('sensor.weatheralerts_1_alerts_are_active') == \"No\" %} No alerts at this time for {{ state_attr('sensor.weatheralerts_1', 'friendly_name') }}. {% endif %} {% if states.sensor.weatheralerts_1_alert_1.state == \"on\" %} {{ states.sensor.weatheralerts_1_alert_1.attributes.display_title }} for {{ state_attr('sensor.weatheralerts_1', 'friendly_name') }}\n  \n{% endif %} {% if states.sensor.weatheralerts_1_alert_2.state == \"on\" %} {{ states.sensor.weatheralerts_1_alert_2.attributes.display_title }} for {{ state_attr('sensor.weatheralerts_1', 'friendly_name') }}\n  \n{% endif %} {% if states.sensor.weatheralerts_1_alert_3.state == \"on\" %} {{ states.sensor.weatheralerts_1_alert_3.attributes.display_title }} for {{ state_attr('sensor.weatheralerts_1', 'friendly_name') }}\n  \n{% endif %} {% if states.sensor.weatheralerts_1_alert_4.state == \"on\" %} {{ states.sensor.weatheralerts_1_alert_4.attributes.display_title }} for {{ state_attr('sensor.weatheralerts_1', 'friendly_name') }}\n  \n{% endif %} {% if states.sensor.weatheralerts_1_alert_5.state == \"on\" %} {{ states.sensor.weatheralerts_1_alert_5.attributes.display_title }} for {{ state_attr('sensor.weatheralerts_1', 'friendly_name') }} {% endif %}\n"
+                                }
+                            },
+                            {
+                                "service": "input_text.set_value",
+                                "data_template": {
+                                    "entity_id": "input_text.weatheralerts_1_triggered_pushbullet_alert_ids",
+                                    "value": "{{ state_attr('sensor.weatheralerts_1_alert_1', 'alert_id') }} {{ state_attr('sensor.weatheralerts_1_alert_2', 'alert_id') }} {{ state_attr('sensor.weatheralerts_1_alert_3', 'alert_id') }} {{ state_attr('sensor.weatheralerts_1_alert_4', 'alert_id') }} {{ state_attr('sensor.weatheralerts_1_alert_5', 'alert_id') }}"
+                                }
+                            }
+                        ]
+                    },
+                    "blueprint_inputs": null,
+                    "context": {
+                        "id": "01G6ZE7KY6YFX42WQSFE5QQVQZ",
+                        "parent_id": "01G6ZE7KX7QKK1NCX7CCWQRGA9",
+                        "user_id": null
+                    }
+                },
+                "short_dict": {
+                    "last_step": "condition/0/conditions/0",
+                    "run_id": "8d7cca88900387477cbd5cbc1ea9a178",
+                    "state": "running",
+                    "script_execution": null,
+                    "timestamp": {
+                        "start": "2022-07-02T12:30:09.862524+00:00",
+                        "finish": null
+                    },
+                    "domain": "automation",
+                    "item_id": "None",
+                    "trigger": "state of sensor.weatheralerts_1_alert_1_last_changed"
+                }
+            },
+            {
+                "extended_dict": {
+                    "last_step": "action/0",
+                    "run_id": "984fc79837875595d9ac03ae3a53afe1",
+                    "state": "running",
+                    "script_execution": null,
+                    "timestamp": {
+                        "start": "2022-07-02T13:00:09.861188+00:00",
+                        "finish": null
+                    },
+                    "domain": "automation",
+                    "item_id": "None",
+                    "trigger": "state of sensor.weatheralerts_1_alerts_are_active",
+                    "trace": {
+                        "trigger/0": [
+                            {
+                                "path": "trigger/0",
+                                "timestamp": "2022-07-02T13:00:09.861281+00:00",
+                                "changed_variables": {
+                                    "this": {
+                                        "entity_id": "automation.weather_alert_ui_notification_auto_dismiss_1",
+                                        "state": "on",
+                                        "attributes": {
+                                            "last_triggered": "2022-07-02T10:30:08.964056+00:00",
+                                            "mode": "single",
+                                            "current": 0,
+                                            "friendly_name": "Weather Alert UI Notification Auto-dismiss - 1"
+                                        },
+                                        "last_changed": "2022-07-02T09:58:06.106636+00:00",
+                                        "last_updated": "2022-07-02T10:30:08.965221+00:00",
+                                        "context": {
+                                            "id": "01G6Z7BVT37WKZ7WZ4VBK15457",
+                                            "parent_id": "01G6Z5MXYFAKXKB2F73RVWHJ7Z",
+                                            "user_id": null
+                                        }
+                                    },
+                                    "trigger": {
+                                        "id": "0",
+                                        "idx": "0",
+                                        "platform": "state",
+                                        "entity_id": "sensor.weatheralerts_1_alerts_are_active",
+                                        "from_state": {
+                                            "entity_id": "sensor.weatheralerts_1_alerts_are_active",
+                                            "state": "Yes",
+                                            "attributes": {
+                                                "icon": "mdi:alert-rhombus",
+                                                "friendly_name": "Weather Alerts Are Active"
+                                            },
+                                            "last_changed": "2022-07-02T11:30:08.876968+00:00",
+                                            "last_updated": "2022-07-02T11:30:08.876968+00:00",
+                                            "context": {
+                                                "id": "01G6ZASQB0HF85CGCHDB4A7VE0",
+                                                "parent_id": null,
+                                                "user_id": null
+                                            }
+                                        },
+                                        "to_state": {
+                                            "entity_id": "sensor.weatheralerts_1_alerts_are_active",
+                                            "state": "No",
+                                            "attributes": {
+                                                "icon": "mdi:alert-rhombus",
+                                                "friendly_name": "Weather Alerts Are Active"
+                                            },
+                                            "last_changed": "2022-07-02T12:30:09.843148+00:00",
+                                            "last_updated": "2022-07-02T12:30:09.843148+00:00",
+                                            "context": {
+                                                "id": "01G6ZE7KX7QKK1NCX7CCWQRGA9",
+                                                "parent_id": null,
+                                                "user_id": null
+                                            }
+                                        },
+                                        "for": {
+                                            "__type": "<class 'datetime.timedelta'>",
+                                            "total_seconds": 1800.0
+                                        },
+                                        "attribute": null,
+                                        "description": "state of sensor.weatheralerts_1_alerts_are_active"
+                                    }
+                                }
+                            }
+                        ],
+                        "condition/0": [
+                            {
+                                "path": "condition/0",
+                                "timestamp": "2022-07-02T13:00:09.861327+00:00",
+                                "result": {
+                                    "result": true,
+                                    "entities": [
+                                        "sensor.weatheralerts_1_alerts_are_active"
+                                    ]
+                                }
+                            }
+                        ],
+                        "action/0": [
+                            {
+                                "path": "action/0",
+                                "timestamp": "2022-07-02T13:00:09.862215+00:00",
+                                "changed_variables": {
+                                    "context": {
+                                        "id": "01G6ZFYHR5BYZ00PV2W1YQ8WVE",
+                                        "parent_id": "01G6ZE7KX7QKK1NCX7CCWQRGA9",
+                                        "user_id": null
+                                    }
+                                },
+                                "result": {
+                                    "params": {
+                                        "domain": "persistent_notification",
+                                        "service": "dismiss",
+                                        "service_data": {
+                                            "notification_id": "weatheralerts_1_alert"
+                                        },
+                                        "target": {}
+                                    },
+                                    "running_script": false,
+                                    "limit": 10
+                                }
+                            }
+                        ]
+                    },
+                    "config": {
+                        "alias": "Weather Alert UI Notification Auto-dismiss - 1",
+                        "trigger": [
+                            {
+                                "platform": "state",
+                                "entity_id": "sensor.weatheralerts_1_alerts_are_active",
+                                "to": "No",
+                                "for": {
+                                    "minutes": 30
+                                }
+                            },
+                            {
+                                "platform": "homeassistant",
+                                "event": "start"
+                            }
+                        ],
+                        "condition": [
+                            {
+                                "condition": "template",
+                                "value_template": "{{ states('sensor.weatheralerts_1_alerts_are_active') == 'No' }}"
+                            }
+                        ],
+                        "action": [
+                            {
+                                "service": "persistent_notification.dismiss",
+                                "data": {
+                                    "notification_id": "weatheralerts_1_alert"
+                                }
+                            }
+                        ]
+                    },
+                    "blueprint_inputs": null,
+                    "context": {
+                        "id": "01G6ZFYHR5BYZ00PV2W1YQ8WVE",
+                        "parent_id": "01G6ZE7KX7QKK1NCX7CCWQRGA9",
+                        "user_id": null
+                    }
+                },
+                "short_dict": {
+                    "last_step": "action/0",
+                    "run_id": "984fc79837875595d9ac03ae3a53afe1",
+                    "state": "running",
+                    "script_execution": null,
+                    "timestamp": {
+                        "start": "2022-07-02T13:00:09.861188+00:00",
+                        "finish": null
+                    },
+                    "domain": "automation",
+                    "item_id": "None",
+                    "trigger": "state of sensor.weatheralerts_1_alerts_are_active"
+                }
+            }
+        ],
+        "automation.1656669441754": [
+            {
+                "extended_dict": {
+                    "last_step": "action/0",
+                    "run_id": "97b4eded9c300afd3e1096aba591149a",
+                    "state": "stopped",
+                    "script_execution": "error",
+                    "timestamp": {
+                        "start": "2022-07-02T10:00:00.006918+00:00",
+                        "finish": "2022-07-02T10:00:00.020332+00:00"
+                    },
+                    "domain": "automation",
+                    "item_id": "1656669441754",
+                    "error": "extra keys not allowed @ data['device_id']",
+                    "trigger": "time",
+                    "trace": {
+                        "trigger/0": [
+                            {
+                                "path": "trigger/0",
+                                "timestamp": "2022-07-02T10:00:00.007177+00:00",
+                                "changed_variables": {
+                                    "this": {
+                                        "entity_id": "automation.water_heater_turn_up",
+                                        "state": "on",
+                                        "attributes": {
+                                            "last_triggered": "2022-07-01T10:00:00.021293+00:00",
+                                            "mode": "single",
+                                            "current": 0,
+                                            "id": "1656669441754",
+                                            "friendly_name": "Water Heater Turn Up"
+                                        },
+                                        "last_changed": "2022-07-02T09:58:06.106082+00:00",
+                                        "last_updated": "2022-07-02T09:58:06.106082+00:00",
+                                        "context": {
+                                            "id": "01G6Z5H60TYQ2HHZXVDHYW193F",
+                                            "parent_id": null,
+                                            "user_id": null
+                                        }
+                                    },
+                                    "trigger": {
+                                        "id": "0",
+                                        "idx": "0",
+                                        "platform": "time",
+                                        "now": "2022-07-02T06:00:00.001170-04:00",
+                                        "description": "time",
+                                        "entity_id": null
+                                    }
+                                }
+                            }
+                        ],
+                        "action/0": [
+                            {
+                                "path": "action/0",
+                                "timestamp": "2022-07-02T10:00:00.014413+00:00",
+                                "changed_variables": {
+                                    "context": {
+                                        "id": "01G6Z5MN8682KJVW952KEBTJQ3",
+                                        "parent_id": null,
+                                        "user_id": null
+                                    }
+                                },
+                                "error": "extra keys not allowed @ data['device_id']",
+                                "result": {
+                                    "params": {
+                                        "domain": "water_heater",
+                                        "service": "set_temperature",
+                                        "service_data": {
+                                            "temperature": 130,
+                                            "device_id": [
+                                                "ef9fef2a9d3e533bb399fe77eb2476f7"
+                                            ]
+                                        },
+                                        "target": {
+                                            "device_id": [
+                                                "ef9fef2a9d3e533bb399fe77eb2476f7"
+                                            ]
+                                        }
+                                    },
+                                    "running_script": false,
+                                    "limit": 10
+                                }
+                            }
+                        ]
+                    },
+                    "config": {
+                        "id": "1656669441754",
+                        "alias": "Water Heater Turn Up",
+                        "description": "",
+                        "trigger": [
+                            {
+                                "platform": "time",
+                                "at": "06:00:00"
+                            }
+                        ],
+                        "condition": [],
+                        "action": [
+                            {
+                                "service": "water_heater.set_temperature",
+                                "data": {
+                                    "temperature": 130
+                                },
+                                "target": {
+                                    "device_id": "ef9fef2a9d3e533bb399fe77eb2476f7"
+                                }
+                            }
+                        ],
+                        "mode": "single"
+                    },
+                    "blueprint_inputs": null,
+                    "context": {
+                        "id": "01G6Z5MN8682KJVW952KEBTJQ3",
+                        "parent_id": null,
+                        "user_id": null
+                    }
+                },
+                "short_dict": {
+                    "last_step": "action/0",
+                    "run_id": "97b4eded9c300afd3e1096aba591149a",
+                    "state": "stopped",
+                    "script_execution": "error",
+                    "timestamp": {
+                        "start": "2022-07-02T10:00:00.006918+00:00",
+                        "finish": "2022-07-02T10:00:00.020332+00:00"
+                    },
+                    "domain": "automation",
+                    "item_id": "1656669441754",
+                    "error": "extra keys not allowed @ data['device_id']",
+                    "trigger": "time"
+                }
+            }
+        ],
+        "automation.1656519615147": [
+            {
+                "extended_dict": {
+                    "last_step": "action/1",
+                    "run_id": "a0680f9353cb663a6def90b2c17d55af",
+                    "state": "stopped",
+                    "script_execution": "finished",
+                    "timestamp": {
+                        "start": "2022-07-02T10:00:00.007983+00:00",
+                        "finish": "2022-07-02T10:00:07.649852+00:00"
+                    },
+                    "domain": "automation",
+                    "item_id": "1656519615147",
+                    "trigger": "time",
+                    "trace": {
+                        "trigger/0": [
+                            {
+                                "path": "trigger/0",
+                                "timestamp": "2022-07-02T10:00:00.008027+00:00",
+                                "changed_variables": {
+                                    "this": {
+                                        "entity_id": "automation.daily_brief_ui",
+                                        "state": "on",
+                                        "attributes": {
+                                            "last_triggered": "2022-07-01T10:45:50.516303+00:00",
+                                            "mode": "single",
+                                            "current": 0,
+                                            "id": "1656519615147",
+                                            "friendly_name": "daily_brief_ui"
+                                        },
+                                        "last_changed": "2022-07-02T09:58:06.105894+00:00",
+                                        "last_updated": "2022-07-02T09:58:06.105894+00:00",
+                                        "context": {
+                                            "id": "01G6Z5H60SCWJN2NXSPN3R020R",
+                                            "parent_id": null,
+                                            "user_id": null
+                                        }
+                                    },
+                                    "trigger": {
+                                        "id": "0",
+                                        "idx": "0",
+                                        "platform": "time",
+                                        "now": "2022-07-02T06:00:00.001813-04:00",
+                                        "description": "time",
+                                        "entity_id": null
+                                    }
+                                }
+                            }
+                        ],
+                        "action/0": [
+                            {
+                                "path": "action/0",
+                                "timestamp": "2022-07-02T10:00:00.016967+00:00",
+                                "changed_variables": {
+                                    "context": {
+                                        "id": "01G6Z5MN87AXYQKTNTYY8R822Y",
+                                        "parent_id": null,
+                                        "user_id": null
+                                    }
+                                },
+                                "result": {
+                                    "params": {
+                                        "domain": "notify",
+                                        "service": "email_bill",
+                                        "service_data": {
+                                            "title": "This is your daily brief ui",
+                                            "message": "#  <p>' Here is your daily brief for 06:00 AM. Right now, The Weather in Edgefield is currently 70 degrees with some clouds. Tonight expect a low of 74 degrees. Later Today expect a high of 91Later tonight expect a low of 74 degrees."
+                                        },
+                                        "target": {}
+                                    },
+                                    "running_script": false,
+                                    "limit": 10
+                                }
+                            }
+                        ],
+                        "action/1": [
+                            {
+                                "path": "action/1",
+                                "timestamp": "2022-07-02T10:00:03.803143+00:00",
+                                "result": {
+                                    "params": {
+                                        "domain": "notify",
+                                        "service": "notify",
+                                        "service_data": {
+                                            "message": "#  <p>' Here is your daily brief for 06:00 AM. Right now, The Weather in Edgefield is currently 70 degrees with some clouds. Tonight expect a low of 74 degrees. Later Today expect a high of 91Later tonight expect a low of 74 degrees.",
+                                            "title": "This is your daily brief ui notify.notify"
+                                        },
+                                        "target": {}
+                                    },
+                                    "running_script": false,
+                                    "limit": 10
+                                }
+                            }
+                        ]
+                    },
+                    "config": {
+                        "id": "1656519615147",
+                        "alias": "daily_brief_ui",
+                        "description": "",
+                        "trigger": [
+                            {
+                                "platform": "time",
+                                "at": "06:00:00"
+                            }
+                        ],
+                        "condition": [],
+                        "action": [
+                            {
+                                "service": "notify.email_bill",
+                                "data": {
+                                    "title": "This is your daily brief ui",
+                                    "message": "{# DAily Briefing #} {%- macro getReport() -%}\n    <p>'\n    Here is your daily brief for {{ now().strftime(\"%I:%M %p\") }}.\n    \n    Right now, {{ states('sensor.current_conditions_detail') }}\n  {{ states('sensor.current_forecast_detail') }}\n\n{%- endmacro -%}\n\n{# a macro that removes all newline characters, empty spaces, and returns formatted text  #}\n    {%- macro cleanup(data) -%}\n    {%- for item in data.split(\"\\n\")  if item | trim != \"\" -%}\n      {{ item | trim }} {% endfor -%}\n{%- endmacro -%}\n{# a macro to call all macros :)  #} {%- macro mother_of_all_macros() -%}\n    {{ getReport() }}\n  {%- endmacro -%}\n  \n#  {# Call the macro  #}\n  {{- cleanup(mother_of_all_macros()) -}}"
+                                }
+                            },
+                            {
+                                "service": "notify.notify",
+                                "data": {
+                                    "message": "{# DAily Briefing #} {%- macro getReport() -%}\n    <p>'\n    Here is your daily brief for {{ now().strftime(\"%I:%M %p\") }}.\n    \n    Right now, {{ states('sensor.current_conditions_detail') }}\n  {{ states('sensor.current_forecast_detail') }}\n\n{%- endmacro -%}\n\n{# a macro that removes all newline characters, empty spaces, and returns formatted text  #}\n    {%- macro cleanup(data) -%}\n    {%- for item in data.split(\"\\n\")  if item | trim != \"\" -%}\n      {{ item | trim }} {% endfor -%}\n{%- endmacro -%}\n{# a macro to call all macros :)  #} {%- macro mother_of_all_macros() -%}\n    {{ getReport() }}\n  {%- endmacro -%}\n  \n#  {# Call the macro  #}\n  {{- cleanup(mother_of_all_macros()) -}}",
+                                    "title": "This is your daily brief ui notify.notify"
+                                }
+                            }
+                        ],
+                        "mode": "single"
+                    },
+                    "blueprint_inputs": null,
+                    "context": {
+                        "id": "01G6Z5MN87AXYQKTNTYY8R822Y",
+                        "parent_id": null,
+                        "user_id": null
+                    }
+                },
+                "short_dict": {
+                    "last_step": "action/1",
+                    "run_id": "a0680f9353cb663a6def90b2c17d55af",
+                    "state": "stopped",
+                    "script_execution": "finished",
+                    "timestamp": {
+                        "start": "2022-07-02T10:00:00.007983+00:00",
+                        "finish": "2022-07-02T10:00:07.649852+00:00"
+                    },
+                    "domain": "automation",
+                    "item_id": "1656519615147",
+                    "trigger": "time"
+                }
+            }
+        ],
+        "script.weatheralerts_1_popup_on_wx_alert": [
+            {
+                "extended_dict": {
+                    "last_step": "sequence/1",
+                    "run_id": "b4116d5f4e9d12e2516345c89eda1113",
+                    "state": "stopped",
+                    "script_execution": "finished",
+                    "timestamp": {
+                        "start": "2022-07-02T10:43:09.132925+00:00",
+                        "finish": "2022-07-02T10:43:09.140296+00:00"
+                    },
+                    "domain": "script",
+                    "item_id": "weatheralerts_1_popup_on_wx_alert",
+                    "trace": {
+                        "sequence/0": [
+                            {
+                                "path": "sequence/0",
+                                "timestamp": "2022-07-02T10:43:09.133889+00:00",
+                                "changed_variables": {
+                                    "this": {
+                                        "entity_id": "script.weatheralerts_1_popup_on_wx_alert",
+                                        "state": "off",
+                                        "attributes": {
+                                            "last_triggered": null,
+                                            "mode": "single",
+                                            "current": 0,
+                                            "friendly_name": "Weather Alert Pop Up - 1"
+                                        },
+                                        "last_changed": "2022-07-02T09:58:06.088902+00:00",
+                                        "last_updated": "2022-07-02T09:58:06.088902+00:00",
+                                        "context": {
+                                            "id": "01G6Z5H608XYFM3XGP81T64P2Z",
+                                            "parent_id": null,
+                                            "user_id": null
+                                        }
+                                    },
+                                    "title": "Special Weather Statement issued July 2 at 6:42AM EDT",
+                                    "message": "Patchy Dense Fog Continues across parts of the area<br>\n  \n  <br>Patchy dense fog continues across central South Carolina and eastern Georgia with visibilities less than one mile. Dense fog with visibilities of less than one quarter mile is expected in spots, especially near bodies of water. Motorists should exercise extreme caution when driving in low visibility.</ul><br>\n  \n  <br>Where : Edgefield\n  <br>Effective: 2022-07-02T06:42:00-04:00\n  <br>Expires: 2022-07-02T08:30:00-04:00",
+                                    "context": {
+                                        "id": "01G6Z83NP9T571AZND0HNRZZ7K",
+                                        "parent_id": "01G6Z83NNPW6MNS4PN2CK8DYEW",
+                                        "user_id": null
+                                    }
+                                },
+                                "result": {
+                                    "params": {
+                                        "domain": "persistent_notification",
+                                        "service": "dismiss",
+                                        "service_data": {
+                                            "notification_id": "weatheralerts_1_alert"
+                                        },
+                                        "target": {}
+                                    },
+                                    "running_script": false,
+                                    "limit": 10
+                                }
+                            }
+                        ],
+                        "sequence/1": [
+                            {
+                                "path": "sequence/1",
+                                "timestamp": "2022-07-02T10:43:09.138307+00:00",
+                                "result": {
+                                    "params": {
+                                        "domain": "persistent_notification",
+                                        "service": "create",
+                                        "service_data": {
+                                            "notification_id": "weatheralerts_1_alert",
+                                            "message": "Patchy Dense Fog Continues across parts of the area<br>\n  \n  <br>Patchy dense fog continues across central South Carolina and eastern Georgia with visibilities less than one mile. Dense fog with visibilities of less than one quarter mile is expected in spots, especially near bodies of water. Motorists should exercise extreme caution when driving in low visibility.</ul><br>\n  \n  <br>Where : Edgefield\n  <br>Effective: 2022-07-02T06:42:00-04:00\n  <br>Expires: 2022-07-02T08:30:00-04:00",
+                                            "title": "Special Weather Statement issued July 2 at 6:42AM EDT"
+                                        },
+                                        "target": {}
+                                    },
+                                    "running_script": false,
+                                    "limit": 10
+                                }
+                            }
+                        ]
+                    },
+                    "config": {
+                        "alias": "Weather Alert Pop Up - 1",
+                        "sequence": [
+                            {
+                                "service": "persistent_notification.dismiss",
+                                "data": {
+                                    "notification_id": "weatheralerts_1_alert"
+                                }
+                            },
+                            {
+                                "service": "{% if states.sensor.weatheralerts_1.state != '0' %}\n  persistent_notification.create\n{% endif %}\n",
+                                "data_template": {
+                                    "notification_id": "weatheralerts_1_alert",
+                                    "message": "{{ message }}",
+                                    "title": "{{ title }}"
+                                }
+                            }
+                        ]
+                    },
+                    "blueprint_inputs": null,
+                    "context": {
+                        "id": "01G6Z83NP9T571AZND0HNRZZ7K",
+                        "parent_id": "01G6Z83NNPW6MNS4PN2CK8DYEW",
+                        "user_id": null
+                    }
+                },
+                "short_dict": {
+                    "last_step": "sequence/1",
+                    "run_id": "b4116d5f4e9d12e2516345c89eda1113",
+                    "state": "stopped",
+                    "script_execution": "finished",
+                    "timestamp": {
+                        "start": "2022-07-02T10:43:09.132925+00:00",
+                        "finish": "2022-07-02T10:43:09.140296+00:00"
+                    },
+                    "domain": "script",
+                    "item_id": "weatheralerts_1_popup_on_wx_alert"
+                }
+            }
+        ]
+    }
+}

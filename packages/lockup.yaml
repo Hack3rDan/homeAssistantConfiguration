@@ -1,0 +1,17 @@
+automation:
+  alias: lockup_yaml
+  description: ''
+  trigger:
+  - platform: time
+    at: '22:00:00'
+  condition: []
+  action:
+  - service: notify.email_bill
+    data:
+      message: "notify.email all locked up."
+      title: Locked up
+  - service: notify.notify
+    data:
+      message: "Notify.notify all locked up."
+      title: Locked up
+  mode: single
