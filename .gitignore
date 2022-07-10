@@ -1,1 +1,18 @@
+#Example .gitignore file for homeassistant config dir
+# An * will ensure that everythign will be ignored
+*
+
+# But don't ignore these files, ! is a whitelist
+!*.yaml
+!.gitignore
+!*.md
+
+#Ignore folders
+.storage
+.cloud
+.google.token
+
+# Ensure these YAML files are ignore, otherwise your secret data/credentials will leak.
+ip_bans.yaml
 secrets.yaml
+known_devices.yaml
